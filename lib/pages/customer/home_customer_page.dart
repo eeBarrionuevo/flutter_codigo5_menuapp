@@ -62,7 +62,60 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                         ),
                         child: Stack(
                           children: [
-
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: 18.0,
+                                  horizontal: 14.0,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 10.0),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(14.0),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Cheese Burger Total",
+                                      style: TextStyle(
+                                        color: kBrandPrimaryColor,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    // Text(
+                                    //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                                    //   style: TextStyle(
+                                    //     color: kBrandPrimaryColor.withOpacity(0.5),
+                                    //     fontSize: 14.0,
+                                    //     fontWeight: FontWeight.normal,
+                                    //   ),
+                                    // ),
+                                    Row(
+                                      children: [
+                                        Row(
+                                          children: List.generate(
+                                            5,
+                                            (index) => Icon(
+                                              Icons.star,
+                                              size: 14.0,
+                                              color: Color(0xffFDBF4F),
+                                            ),
+                                          ),
+                                        ),
+                                        dividerWidth6,
+                                        Text("4.0",)
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       );
