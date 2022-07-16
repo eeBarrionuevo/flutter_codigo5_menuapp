@@ -101,7 +101,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                                         Row(
                                           children: List.generate(
                                             5,
-                                            (index) => Icon(
+                                            (index) => const Icon(
                                               Icons.star,
                                               size: 14.0,
                                               color: Color(0xffFDBF4F),
