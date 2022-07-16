@@ -7,12 +7,14 @@ class TextWidget extends StatelessWidget {
   final double fontSize;
   final Color color;
   final FontWeight? fontWeight;
+  final double? height;
 
   TextWidget({
     required this.text,
     required this.fontSize,
     required this.color,
     this.fontWeight,
+    this.height,
   });
 
   @override
@@ -22,7 +24,8 @@ class TextWidget extends StatelessWidget {
       style: TextStyle(
         fontSize: fontSize,
         color: color,
-        fontWeight: fontWeight
+        fontWeight: fontWeight,
+        height: height,
       ),
     );
   }
@@ -40,6 +43,7 @@ class H1 extends StatelessWidget {
       fontSize: kH1Size,
       color: kBrandPrimaryColor,
       fontWeight: FontWeight.w600,
+      height: 1.1,
     );
   }
 }
