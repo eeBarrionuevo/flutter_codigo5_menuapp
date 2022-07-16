@@ -63,6 +63,25 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                         child: Stack(
                           children: [
                             Align(
+                              alignment: Alignment.topRight,
+                              child: Container(
+                                margin: const EdgeInsets.all(14.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6.0, vertical: 4.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  color: kBrandSecondaryColor,
+                                ),
+                                child: Text(
+                                  "50% desc",
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
                               alignment: Alignment.bottomCenter,
                               child: Container(
                                 margin: const EdgeInsets.symmetric(
@@ -73,7 +92,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                                     horizontal: 10.0, vertical: 10.0),
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.white.withOpacity(0.88),
                                   borderRadius: BorderRadius.circular(14.0),
                                 ),
                                 child: Column(
