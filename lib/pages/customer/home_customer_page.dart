@@ -80,6 +80,22 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 6.0, vertical: 0.0),
+                                      decoration: BoxDecoration(
+                                        color: kBrandSecondaryColor,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                      child: Text(
+                                        "Plato de fondo",
+                                        style: TextStyle(
+                                          color: kBrandPrimaryColor,
+                                        ),
+                                      ),
+                                    ),
+                                    divider3,
                                     Text(
                                       "Cheese Burger Total",
                                       style: TextStyle(
@@ -88,6 +104,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
+                                    divider3,
                                     // Text(
                                     //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
                                     //   style: TextStyle(
@@ -98,18 +115,46 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                                     // ),
                                     Row(
                                       children: [
-                                        Row(
-                                          children: List.generate(
-                                            5,
-                                            (index) => const Icon(
-                                              Icons.star,
-                                              size: 14.0,
-                                              color: Color(0xffFDBF4F),
-                                            ),
+                                        // Row(
+                                        //   children: List.generate(
+                                        //     5,
+                                        //     (index) => const Icon(
+                                        //       Icons.star,
+                                        //       size: 14.0,
+                                        //       color: Color(0xffFDBF4F),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        Icon(
+                                          Icons.star,
+                                          size: 14.0,
+                                          color: Color(0xffFDBF4F),
+                                        ),
+                                        dividerWidth3,
+                                        Text(
+                                          "4.0",
+                                          style: TextStyle(
+                                            fontSize: 12.0,
                                           ),
                                         ),
-                                        dividerWidth6,
-                                        Text("4.0",)
+                                        dividerWidth3,
+                                        Text(" | "),
+                                        dividerWidth3,
+                                        Text(
+                                          "20 min.",
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                          ),
+                                        ),
+                                        dividerWidth3,
+                                        Text(" | "),
+                                        dividerWidth3,
+                                        Text(
+                                          "Porciones: 1",
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],
