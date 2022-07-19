@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
+import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({Key? key}) : super(key: key);
@@ -38,16 +39,16 @@ class ProductDetailPage extends StatelessWidget {
                         maxWidth: width * 0.8,
                         minWidth: width * 0.8,
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 14.0),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 14.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(18.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.06),
-                            offset: const Offset(0, 5),
-                            blurRadius: 12.0
-                          ),
+                              color: Colors.black.withOpacity(0.06),
+                              offset: const Offset(0, 5),
+                              blurRadius: 12.0),
                         ],
                       ),
                       child: Column(
@@ -64,7 +65,11 @@ class ProductDetailPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text("Plato de fondo"),
+                          divider3,
+                          TextNormal(
+                            text: "Plato de Fondo",
+                          ),
+                          divider3,
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -107,6 +112,18 @@ class ProductDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+              ],
+            ),
+            divider40,
+            divider12,
+            Column(
+              children: [
+                TextNormal(
+                  text: "Descripción:",
+                ),
+                TextNormal(
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 ),
               ],
             ),

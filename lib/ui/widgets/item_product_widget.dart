@@ -62,6 +62,7 @@ class ItemProductWidget extends StatelessWidget {
                   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
                   color: kBrandPrimaryColor.withOpacity(0.6),
                   maxLines: 2,
+                  textOverflow: TextOverflow.ellipsis,
                 ),
                 divider3,
                 Row(

@@ -9,6 +9,7 @@ class TextWidget extends StatelessWidget {
   final FontWeight? fontWeight;
   final double? height;
   final int? maxLines;
+  final TextOverflow? textOverflow;
 
   TextWidget({
     required this.text,
@@ -17,6 +18,7 @@ class TextWidget extends StatelessWidget {
     this.fontWeight,
     this.height,
     this.maxLines,
+    this.textOverflow,
   });
 
   @override
@@ -24,7 +26,7 @@ class TextWidget extends StatelessWidget {
     return Text(
       text,
       maxLines: maxLines,
-      overflow: TextOverflow.ellipsis,
+      overflow: textOverflow,
       style: TextStyle(
         fontSize: fontSize,
         color: color,
@@ -56,11 +58,13 @@ class TextNormal extends StatelessWidget {
   final String text;
   final Color? color;
   final int? maxLines;
+  final TextOverflow? textOverflow;
 
   TextNormal({
     required this.text,
     this.color,
     this.maxLines,
+    this.textOverflow,
   });
 
   @override
@@ -69,6 +73,7 @@ class TextNormal extends StatelessWidget {
       text: text,
       maxLines: maxLines,
       fontSize: textNormalSize,
+      textOverflow: textOverflow,
       color: color ?? kBrandPrimaryColor,
     );
   }
