@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/general/colors.dart';
+import 'package:menuapp/ui/widgets/general_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({Key? key}) : super(key: key);
@@ -6,6 +8,7 @@ class ProductDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -27,24 +30,72 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                 ),
                 Positioned.fill(
-                  bottom: -10,
+                  bottom: -25,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: width * 0.8,
+                      ),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.red,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text("Cheese Burger Total")
+                          Text(
+                            "Cheese Burger Total asdsadsa asdsadsadsa asdasds",
+                            style: TextStyle(
+                              color: kBrandPrimaryColor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text("Plato de fondo"),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.star,
+                                size: 14.0,
+                                color: Color(0xffFDBF4F),
+                              ),
+                              dividerWidth3,
+                              Text(
+                                "4.0",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: kBrandPrimaryColor,
+                                ),
+                              ),
+                              dividerWidth3,
+                              Text(" | "),
+                              dividerWidth3,
+                              Text(
+                                "20 min.",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: kBrandPrimaryColor,
+                                ),
+                              ),
+                              dividerWidth3,
+                              Text(" | "),
+                              dividerWidth3,
+                              Text(
+                                "Porciones: 1",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: kBrandPrimaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
               ],
-
             ),
           ],
         ),
