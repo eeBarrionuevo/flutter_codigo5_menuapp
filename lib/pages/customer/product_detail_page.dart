@@ -182,7 +182,7 @@ class ProductDetailPage extends StatelessWidget {
                     height: 50,
                     width: 50,
                     decoration: BoxDecoration(
-                      color: kBrandPrimaryColor,
+                      color: kBrandPrimaryColor.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(14.0),
                     ),
                     child: Icon(
@@ -191,7 +191,12 @@ class ProductDetailPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                    constraints: BoxConstraints(
+                      minWidth: 42.0,
+                      maxWidth: 42.0,
+                    ),
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.symmetric(horizontal: 0.0),
                     child: Text(
                       "1",
                       style: TextStyle(
