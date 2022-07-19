@@ -258,6 +258,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                       ),
                       Expanded(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Cheese Burger Total",
@@ -267,10 +268,59 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                                 color: kBrandPrimaryColor,
                               ),
                             ),
+                            divider3,
                             TextNormal(
                               text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
                               color: kBrandPrimaryColor.withOpacity(0.6),
                               maxLines: 2,
+                            ),
+                            divider3,
+                            Row(
+                              children: [
+                                // Row(
+                                //   children: List.generate(
+                                //     5,
+                                //     (index) => const Icon(
+                                //       Icons.star,
+                                //       size: 14.0,
+                                //       color: Color(0xffFDBF4F),
+                                //     ),
+                                //   ),
+                                // ),
+                                Icon(
+                                  Icons.star,
+                                  size: 14.0,
+                                  color: Color(0xffFDBF4F),
+                                ),
+                                dividerWidth3,
+                                Text(
+                                  "4.0",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: kBrandPrimaryColor,
+                                  ),
+                                ),
+                                dividerWidth3,
+                                Text(" | "),
+                                dividerWidth3,
+                                Text(
+                                  "20 min.",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: kBrandPrimaryColor,
+                                  ),
+                                ),
+                                dividerWidth3,
+                                Text(" | "),
+                                dividerWidth3,
+                                Text(
+                                  "Porciones: 1",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: kBrandPrimaryColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
