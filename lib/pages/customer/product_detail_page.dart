@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
+import 'package:menuapp/ui/widgets/item_ingredient_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -31,7 +32,7 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                 ),
                 Positioned.fill(
-                  bottom: -40,
+                  bottom: -50,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -108,6 +109,18 @@ class ProductDetailPage extends StatelessWidget {
                               ),
                             ],
                           ),
+                          divider6,
+                          Text(
+                            "S./ 30.00",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: kBrandPrimaryColor,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -117,15 +130,40 @@ class ProductDetailPage extends StatelessWidget {
             ),
             divider40,
             divider12,
-            Column(
-              children: [
-                TextNormal(
-                  text: "Descripción:",
-                ),
-                TextNormal(
-                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextNormal(
+                    text: "Descripción:",
+                  ),
+                  divider12,
+                  TextNormal(
+                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    color: kBrandPrimaryColor.withOpacity(0.6),
+                  ),
+                  divider12,
+                  TextNormal(
+                    text: "Ingredientes:",
+                  ),
+                  divider12,
+                  Wrap(
+                    spacing: 12.0,
+                    runSpacing: 12.0,
+                    children: [
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                      ItemIngredientWidget(),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
