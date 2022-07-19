@@ -174,8 +174,7 @@ class ProductDetailPage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              color: Colors.red,
-              height: 100,
+              height: 60.0,
               // width: double.infinity,
               margin:
                   const EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
@@ -221,12 +220,26 @@ class ProductDetailPage extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
+                  dividerWidth10,
                   Expanded(
                     child: SizedBox(
                       height: 54.0,
                       child: ElevatedButton(
-                        child: Text("asdsd"),
-                        onPressed: (){},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14.0),
+                            side: BorderSide.none,
+                          ),
+                          primary: kBrandPrimaryColor
+                        ),
+                        child: const Text(
+                          "Agregar orden",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                        onPressed: () {},
                       ),
                     ),
                   ),
