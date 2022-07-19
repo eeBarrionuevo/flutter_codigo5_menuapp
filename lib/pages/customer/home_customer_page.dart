@@ -15,6 +15,9 @@ class HomeCustomerPage extends StatefulWidget {
 }
 
 class _HomeCustomerPageState extends State<HomeCustomerPage> {
+
+  int indexCategory = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,23 +203,43 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                     children: [
                       ItemCategoryWidget(
                         text: "Todos",
-                        selected: true,
+                        selected: indexCategory == 0,
+                        onTap: (){
+                          indexCategory = 0;
+                          setState((){});
+                        },
                       ),
                       ItemCategoryWidget(
                         text: "Platos de fondo",
-                        selected: false,
+                        selected: indexCategory == 1,
+                        onTap: (){
+                          indexCategory = 1;
+                          setState((){});
+                        },
                       ),
                       ItemCategoryWidget(
                         text: "Bebidas",
-                        selected: false,
+                        selected: indexCategory == 2,
+                        onTap: (){
+                          indexCategory = 2;
+                          setState((){});
+                        },
                       ),
                       ItemCategoryWidget(
                         text: "Entradas",
-                        selected: false,
+                        selected: indexCategory == 3,
+                        onTap: (){
+                          indexCategory = 3;
+                          setState((){});
+                        },
                       ),
                       ItemCategoryWidget(
                         text: "Postres",
-                        selected: false,
+                        selected: indexCategory == 4,
+                        onTap: (){
+                          indexCategory = 4;
+                          setState((){});
+                        },
                       ),
                     ],
                   ),
