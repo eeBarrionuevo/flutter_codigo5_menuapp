@@ -195,7 +195,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                 TextNormal(
                   text: "Categorías",
                 ),
-                divider12,
+                divider20,
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
