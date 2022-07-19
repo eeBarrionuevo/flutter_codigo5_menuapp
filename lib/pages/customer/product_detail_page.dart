@@ -14,7 +14,7 @@ class ProductDetailPage extends StatelessWidget {
 
     return Scaffold(
       body: Stack(
-        fit: StackFit.expand,
+        fit: StackFit.loose,
         children: [
           SingleChildScrollView(
             child: Column(
@@ -171,9 +171,12 @@ class ProductDetailPage extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
+          Align(
+            alignment: Alignment.bottomCenter,
             child: Container(
+              color: Colors.red,
+              height: 100,
+              // width: double.infinity,
               margin:
                   const EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
               child: Row(
@@ -216,6 +219,15 @@ class ProductDetailPage extends StatelessWidget {
                     child: Icon(
                       Icons.add,
                       color: Colors.white,
+                    ),
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      height: 54.0,
+                      child: ElevatedButton(
+                        child: Text("asdsd"),
+                        onPressed: (){},
+                      ),
                     ),
                   ),
                 ],
