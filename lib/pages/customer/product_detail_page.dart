@@ -12,6 +12,7 @@ class ProductDetailPage extends StatelessWidget {
         child: Column(
           children: [
             Stack(
+              clipBehavior: Clip.none,
               children: [
                 ClipRRect(
                   borderRadius: const BorderRadius.only(
@@ -25,7 +26,25 @@ class ProductDetailPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                Positioned.fill(
+                  bottom: -10,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Cheese Burger Total")
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
+
             ),
           ],
         ),
