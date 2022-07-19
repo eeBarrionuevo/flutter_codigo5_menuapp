@@ -15,7 +15,6 @@ class HomeCustomerPage extends StatefulWidget {
 }
 
 class _HomeCustomerPageState extends State<HomeCustomerPage> {
-
   int indexCategory = 0;
 
   @override
@@ -191,7 +190,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                     },
                   ),
                 ),
-                divider12,
+                divider20,
                 TextNormal(
                   text: "Categorías",
                 ),
@@ -204,43 +203,79 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                       ItemCategoryWidget(
                         text: "Todos",
                         selected: indexCategory == 0,
-                        onTap: (){
+                        onTap: () {
                           indexCategory = 0;
-                          setState((){});
+                          setState(() {});
                         },
                       ),
                       ItemCategoryWidget(
                         text: "Platos de fondo",
                         selected: indexCategory == 1,
-                        onTap: (){
+                        onTap: () {
                           indexCategory = 1;
-                          setState((){});
+                          setState(() {});
                         },
                       ),
                       ItemCategoryWidget(
                         text: "Bebidas",
                         selected: indexCategory == 2,
-                        onTap: (){
+                        onTap: () {
                           indexCategory = 2;
-                          setState((){});
+                          setState(() {});
                         },
                       ),
                       ItemCategoryWidget(
                         text: "Entradas",
                         selected: indexCategory == 3,
-                        onTap: (){
+                        onTap: () {
                           indexCategory = 3;
-                          setState((){});
+                          setState(() {});
                         },
                       ),
                       ItemCategoryWidget(
                         text: "Postres",
                         selected: indexCategory == 4,
-                        onTap: (){
+                        onTap: () {
                           indexCategory = 4;
-                          setState((){});
+                          setState(() {});
                         },
                       ),
+                    ],
+                  ),
+                ),
+                divider20,
+                Container(
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(14.0),
+                        child: Image.network(
+                          "https://www.localburger.com.co/web/image/725",
+                          height: 120,
+                          width: 120,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "Cheese Burger Total",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                color: kBrandPrimaryColor,
+                              ),
+                            ),
+                            TextNormal(
+                              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                              color: kBrandPrimaryColor.withOpacity(0.6),
+                              maxLines: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),
