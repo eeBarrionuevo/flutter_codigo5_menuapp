@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/general/fonts.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
+import 'package:menuapp/ui/widgets/item_category_widget.dart';
 import 'package:menuapp/ui/widgets/search_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
@@ -24,8 +25,9 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Bienvenidos",
+                divider12,
+                TextNormal(
+                  text: "Bienvenidos",
                 ),
                 H1(
                   text: "Las espadas de Ramón",
@@ -33,8 +35,8 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                 divider12,
                 SearchWidget(),
                 divider12,
-                Text(
-                  "Promociones",
+                TextNormal(
+                  text: "Promociones",
                 ),
                 divider12,
                 SizedBox(
@@ -184,6 +186,39 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                         ),
                       );
                     },
+                  ),
+                ),
+                divider12,
+                TextNormal(
+                  text: "Categorías",
+                ),
+                divider12,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Row(
+                    children: [
+                      ItemCategoryWidget(
+                        text: "Todos",
+                        selected: true,
+                      ),
+                      ItemCategoryWidget(
+                        text: "Platos de fondo",
+                        selected: false,
+                      ),
+                      ItemCategoryWidget(
+                        text: "Bebidas",
+                        selected: false,
+                      ),
+                      ItemCategoryWidget(
+                        text: "Entradas",
+                        selected: false,
+                      ),
+                      ItemCategoryWidget(
+                        text: "Postres",
+                        selected: false,
+                      ),
+                    ],
                   ),
                 ),
               ],

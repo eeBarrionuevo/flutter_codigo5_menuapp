@@ -47,3 +47,18 @@ class H1 extends StatelessWidget {
     );
   }
 }
+
+class TextNormal extends StatelessWidget {
+
+  final String text;
+  TextNormal({required this.text,});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextWidget(
+      text: text,
+      fontSize: textNormalSize,
+      color: kBrandPrimaryColor,
+    );
+  }
+}
