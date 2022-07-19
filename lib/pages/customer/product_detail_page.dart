@@ -30,21 +30,34 @@ class ProductDetailPage extends StatelessWidget {
                   ),
                 ),
                 Positioned.fill(
-                  bottom: -25,
+                  bottom: -40,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       constraints: BoxConstraints(
                         maxWidth: width * 0.8,
+                        minWidth: width * 0.8,
                       ),
+                      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 14.0),
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(18.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.06),
+                            offset: const Offset(0, 5),
+                            blurRadius: 12.0
+                          ),
+                        ],
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "Cheese Burger Total asdsadsa asdsadsadsa asdasds",
+                            "Cheese Burger Total",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: kBrandPrimaryColor,
                               fontSize: 18.0,
