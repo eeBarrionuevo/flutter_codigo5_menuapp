@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemIngredientWidget extends StatelessWidget {
-  const ItemIngredientWidget({Key? key}) : super(key: key);
+
+  String text;
+
+  ItemIngredientWidget({required this.text,});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class ItemIngredientWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: TextNormal(text: "Carne"),
+      child: TextNormal(text: text),
     );
   }
 }
