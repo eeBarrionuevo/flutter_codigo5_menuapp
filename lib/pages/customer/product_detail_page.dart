@@ -168,16 +168,68 @@ class ProductDetailPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextNormal(
+                        text: "Descripción:",
+                      ),
+                      divider12,
+                      TextNormal(
+                        text:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        color: kBrandPrimaryColor.withOpacity(0.6),
+                      ),
+                      divider12,
+                      TextNormal(
+                        text: "Ingredientes:",
+                      ),
+                      divider12,
+                      Wrap(
+                        spacing: 12.0,
+                        runSpacing: 12.0,
+                        children: [
+                          ItemIngredientWidget(text: "Carne"),
+                          ItemIngredientWidget(text: "Pan artesanal"),
+                          ItemIngredientWidget(text: "Lechuga"),
+                          ItemIngredientWidget(text: "Tomates"),
+                          ItemIngredientWidget(text: "Tocino"),
+                          ItemIngredientWidget(text: "Queso"),
+                          ItemIngredientWidget(text: "Cebolla caramelizada"),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                divider40,
+                divider40,
               ],
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 60.0,
-              // width: double.infinity,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
+              height: 80.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 0.0,
+                vertical: 0.0,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.06),
+                    offset: const Offset(0, -5.0),
+                    blurRadius: 12.0,
+                  ),
+                ],
+              ),
               child: Row(
                 children: [
                   Container(
@@ -226,12 +278,11 @@ class ProductDetailPage extends StatelessWidget {
                       height: 54.0,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14.0),
-                            side: BorderSide.none,
-                          ),
-                          primary: kBrandPrimaryColor
-                        ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14.0),
+                              side: BorderSide.none,
+                            ),
+                            primary: kBrandPrimaryColor),
                         child: const Text(
                           "Agregar orden",
                           style: TextStyle(
