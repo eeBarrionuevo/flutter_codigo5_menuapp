@@ -245,6 +245,18 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                 ),
                 divider20,
                 Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(14.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.06),
+                        blurRadius: 12.0,
+                        offset: const Offset(4, 4),
+                      )
+                    ],
+                  ),
                   child: Row(
                     children: [
                       ClipRRect(
@@ -256,6 +268,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                           fit: BoxFit.cover,
                         ),
                       ),
+                      dividerWidth10,
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,16 +290,6 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                             divider3,
                             Row(
                               children: [
-                                // Row(
-                                //   children: List.generate(
-                                //     5,
-                                //     (index) => const Icon(
-                                //       Icons.star,
-                                //       size: 14.0,
-                                //       color: Color(0xffFDBF4F),
-                                //     ),
-                                //   ),
-                                // ),
                                 Icon(
                                   Icons.star,
                                   size: 14.0,
