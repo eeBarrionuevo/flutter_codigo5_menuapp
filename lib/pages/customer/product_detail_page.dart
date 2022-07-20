@@ -133,6 +133,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         ),
                       ),
                     ),
+                    SafeArea(
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(12.0),
+                          margin: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.90),
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.06),
+                                blurRadius: 12,
+                                offset: const Offset(5, 5),
+                              ),
+                            ],
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios_sharp,
+                            color: kBrandPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 divider40,
@@ -237,16 +263,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: quantity > 1 ? (){
-                      quantity--;
-                      setState((){});
-                    } : null,
+                    onTap: quantity > 1
+                        ? () {
+                            quantity--;
+                            setState(() {});
+                          }
+                        : null,
                     child: Container(
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
                         // color: kBrandPrimaryColor.withOpacity(0.3),
-                        color: quantity > 1 ? kBrandPrimaryColor : kBrandPrimaryColor.withOpacity(0.3),
+                        color: quantity > 1
+                            ? kBrandPrimaryColor
+                            : kBrandPrimaryColor.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(14.0),
                       ),
                       child: const Icon(
@@ -272,9 +302,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ),
                   ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       quantity++;
-                      setState((){});
+                      setState(() {});
                     },
                     child: Container(
                       height: 50,
