@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/pages/customer/product_detail_page.dart';
 import 'package:menuapp/ui/general/colors.dart';
@@ -39,11 +40,27 @@ class ItemProductWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(14.0),
-              child: Image.network(
-                "https://www.localburger.com.co/web/image/725",
-                height: 120,
+              child: CachedNetworkImage(
                 width: 120,
-                fit: BoxFit.cover,
+                height: 120,
+                imageUrl: "https://www.localburger.com.co/web/image/725",
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                progressIndicatorBuilder: (context, url, downloadProgress){
+                  return  SizedBox(
+                    height: 20.0,
+                    width: 20.0,
+                    child: CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
+                  );
+                },
               ),
             ),
             dividerWidth10,

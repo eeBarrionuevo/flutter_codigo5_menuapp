@@ -135,7 +135,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ),
                     SafeArea(
                       child: InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pop(context);
                         },
                         child: Container(
