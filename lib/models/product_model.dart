@@ -1,43 +1,43 @@
 
 class ProductModel {
   ProductModel({
-    this.image,
-    this.categoryId,
-    this.rate,
-    this.price,
-    this.name,
-    this.discount,
-    this.ingredients,
-    this.description,
-    this.time,
-    this.serving,
+    required this.image,
+    required this.categoryId,
+    required this.rate,
+    required this.price,
+    required this.name,
+    required this.discount,
+    required this.ingredients,
+    required this.description,
+    required this.time,
+    required this.serving,
     this.id,
   });
 
   String image;
   String categoryId;
-  int rate;
-  int price;
+  double rate;
+  double price;
   String name;
   int discount;
   List<String> ingredients;
   String description;
   int time;
   int serving;
-  String id;
+  String? id;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     image: json["image"],
     categoryId: json["category_id"],
-    rate: json["rate"],
-    price: json["price"],
+    rate: json["rate"].toDouble(),
+    price: json["price"].toDouble(),
     name: json["name"],
     discount: json["discount"],
     ingredients: List<String>.from(json["ingredients"].map((x) => x)),
     description: json["description"],
     time: json["time"],
     serving: json["serving"],
-    id: json["id"],
+    id: json["id"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
