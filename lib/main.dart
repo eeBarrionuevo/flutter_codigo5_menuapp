@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(),
       ),
+      // home: ProductDetailPage(),
       home: ProductDetailPage(),
     );
   }

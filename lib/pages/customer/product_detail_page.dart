@@ -4,14 +4,18 @@ import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_ingredient_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
-class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({Key? key}) : super(key: key);
+class ProductDetailPage extends StatefulWidget {
+  @override
+  State<ProductDetailPage> createState() => _ProductDetailPageState();
+}
+
+class _ProductDetailPageState extends State<ProductDetailPage> {
+  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Stack(
         fit: StackFit.loose,
@@ -232,27 +236,34 @@ class ProductDetailPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: kBrandPrimaryColor.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    child: Icon(
-                      Icons.remove,
-                      color: Colors.white,
+                  InkWell(
+                    onTap: quantity > 1 ? (){
+                      quantity--;
+                      setState((){});
+                    } : null,
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        // color: kBrandPrimaryColor.withOpacity(0.3),
+                        color: quantity > 1 ? kBrandPrimaryColor : kBrandPrimaryColor.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(14.0),
+                      ),
+                      child: const Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Container(
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       minWidth: 42.0,
                       maxWidth: 42.0,
                     ),
                     alignment: Alignment.center,
                     margin: const EdgeInsets.symmetric(horizontal: 0.0),
                     child: Text(
-                      "1",
+                      quantity.toString(),
                       style: TextStyle(
                         color: kBrandPrimaryColor,
                         fontWeight: FontWeight.bold,
@@ -260,16 +271,22 @@ class ProductDetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: kBrandPrimaryColor,
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
+                  InkWell(
+                    onTap: (){
+                      quantity++;
+                      setState((){});
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: kBrandPrimaryColor,
+                        borderRadius: BorderRadius.circular(14.0),
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   dividerWidth10,
