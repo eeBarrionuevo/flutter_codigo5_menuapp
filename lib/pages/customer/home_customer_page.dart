@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/general/fonts.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
@@ -18,10 +20,17 @@ class HomeCustomerPage extends StatefulWidget {
 }
 
 class _HomeCustomerPageState extends State<HomeCustomerPage> {
+
+  final FirestoreService _productService = FirestoreService(collection: "products");
+
   int indexCategory = 0;
 
   @override
   Widget build(BuildContext context) {
+
+    _productService.getProducts();
+
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
