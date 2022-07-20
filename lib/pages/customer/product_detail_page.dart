@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
@@ -31,11 +32,25 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         bottomRight: Radius.circular(45.0),
                         bottomLeft: Radius.circular(45.0),
                       ),
-                      child: Image.network(
-                        "https://img.freepik.com/fotos-premium/hamburguesa-carne-artesanal-queso-tocino-cebolla-caramelizada-hojas-rucula-sobre-mesa-madera_74692-158.jpg?w=2000",
-                        height: height * 0.45,
+                      child: CachedNetworkImage(
                         width: double.infinity,
+                        height: height * 0.45,
+                        imageUrl: "https://www.localburger.com.co/web/image/725",
                         fit: BoxFit.cover,
+                        fadeInCurve: Curves.easeIn,
+                        fadeInDuration: const Duration(milliseconds: 800),
+                        progressIndicatorBuilder: (context, url, downloadProgress){
+                          return Center(
+                            child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: kBrandSecondaryColor,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Positioned.fill(
