@@ -48,7 +48,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   height: 260.0,
                   child: PageView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: 3,
+                    itemCount: 1,
                     controller: PageController(
                       initialPage: 0,
                       viewportFraction: 0.8,
@@ -113,11 +113,6 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   ),
                 ),
                 divider20,
-                ItemProductWidget(),
-                ItemProductWidget(),
-                ItemProductWidget(),
-                ItemProductWidget(),
-                ItemProductWidget(),
                 ItemProductWidget(),
               ],
             ),

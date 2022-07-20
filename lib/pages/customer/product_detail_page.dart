@@ -27,30 +27,33 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(45.0),
-                        bottomLeft: Radius.circular(45.0),
-                      ),
-                      child: CachedNetworkImage(
-                        width: double.infinity,
-                        height: height * 0.45,
-                        imageUrl: "https://www.localburger.com.co/web/image/725",
-                        fit: BoxFit.cover,
-                        fadeInCurve: Curves.easeIn,
-                        fadeInDuration: const Duration(milliseconds: 800),
-                        progressIndicatorBuilder: (context, url, downloadProgress){
-                          return Center(
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: kBrandSecondaryColor,
+                    Hero(
+                      tag: "002",
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(45.0),
+                          bottomLeft: Radius.circular(45.0),
+                        ),
+                        child: CachedNetworkImage(
+                          width: double.infinity,
+                          height: height * 0.45,
+                          imageUrl: "https://www.localburger.com.co/web/image/725",
+                          fit: BoxFit.cover,
+                          fadeInCurve: Curves.easeIn,
+                          fadeInDuration: const Duration(milliseconds: 800),
+                          progressIndicatorBuilder: (context, url, downloadProgress){
+                            return Center(
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: kBrandSecondaryColor,
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     Positioned.fill(

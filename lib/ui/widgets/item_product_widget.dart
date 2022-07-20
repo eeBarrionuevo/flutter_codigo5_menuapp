@@ -38,27 +38,30 @@ class ItemProductWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(14.0),
-              child: CachedNetworkImage(
-                width: 120,
-                height: 120,
-                imageUrl: "https://www.localburger.com.co/web/image/725",
-                fit: BoxFit.cover,
-                fadeInCurve: Curves.easeIn,
-                fadeInDuration: const Duration(milliseconds: 800),
-                progressIndicatorBuilder: (context, url, downloadProgress){
-                  return Center(
-                    child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: kBrandSecondaryColor,
+            Hero(
+              tag: "001",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(14.0),
+                child: CachedNetworkImage(
+                  width: 120,
+                  height: 120,
+                  imageUrl: "https://www.localburger.com.co/web/image/725",
+                  fit: BoxFit.cover,
+                  fadeInCurve: Curves.easeIn,
+                  fadeInDuration: const Duration(milliseconds: 800),
+                  progressIndicatorBuilder: (context, url, downloadProgress){
+                    return Center(
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: kBrandSecondaryColor,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
             dividerWidth10,
