@@ -24,6 +24,8 @@ class ItemPromotionWidget extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl:
             "https://img.freepik.com/fotos-premium/hamburguesa-carne-artesanal-queso-tocino-cebolla-caramelizada-hojas-rucula-sobre-mesa-madera_74692-158.jpg?w=2000",
+        fadeInCurve: Curves.easeIn,
+        fadeInDuration: const Duration(milliseconds: 800),
         imageBuilder: (context, imageProvider) {
           return Container(
             margin: const EdgeInsets.only(right: 16.0),
@@ -137,6 +139,18 @@ class ItemPromotionWidget extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          );
+        },
+        progressIndicatorBuilder: (context, url, downloadProgress){
+          return Center(
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: kBrandSecondaryColor,
+              ),
             ),
           );
         },

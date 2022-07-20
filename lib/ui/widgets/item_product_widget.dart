@@ -45,15 +45,20 @@ class ItemProductWidget extends StatelessWidget {
                 height: 120,
                 imageUrl: "https://www.localburger.com.co/web/image/725",
                 fit: BoxFit.cover,
-                // progressIndicatorBuilder: (context, url, downloadProgress){
-                //   return  const SizedBox(
-                //     width: 10,
-                //     height: 10,
-                //     child: CircularProgressIndicator(
-                //       color: Colors.red,
-                //     ),
-                //   );
-                // },
+                fadeInCurve: Curves.easeIn,
+                fadeInDuration: const Duration(milliseconds: 800),
+                progressIndicatorBuilder: (context, url, downloadProgress){
+                  return Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: kBrandSecondaryColor,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             dividerWidth10,
