@@ -44,23 +44,16 @@ class ItemProductWidget extends StatelessWidget {
                 width: 120,
                 height: 120,
                 imageUrl: "https://www.localburger.com.co/web/image/725",
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                progressIndicatorBuilder: (context, url, downloadProgress){
-                  return  SizedBox(
-                    height: 20.0,
-                    width: 20.0,
-                    child: CircularProgressIndicator(
-                      color: Colors.red,
-                    ),
-                  );
-                },
+                fit: BoxFit.cover,
+                // progressIndicatorBuilder: (context, url, downloadProgress){
+                //   return  const SizedBox(
+                //     width: 10,
+                //     height: 10,
+                //     child: CircularProgressIndicator(
+                //       color: Colors.red,
+                //     ),
+                //   );
+                // },
               ),
             ),
             dividerWidth10,
