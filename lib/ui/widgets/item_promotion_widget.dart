@@ -40,7 +40,7 @@ class ItemPromotionWidget extends StatelessWidget {
             return Stack(
               children: [
                 Hero(
-                  tag: "002",
+                  tag: productModel.id!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image(

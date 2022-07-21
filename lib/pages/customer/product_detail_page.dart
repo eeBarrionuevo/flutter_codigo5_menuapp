@@ -33,7 +33,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   clipBehavior: Clip.none,
                   children: [
                     Hero(
-                      tag: "002",
+                      tag: widget.productModel.id!,
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(45.0),
