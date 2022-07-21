@@ -23,6 +23,7 @@ class HomeCustomerPage extends StatefulWidget {
 class _HomeCustomerPageState extends State<HomeCustomerPage> {
 
   final FirestoreService _productService = FirestoreService(collection: "products");
+  final FirestoreService _categoryService = FirestoreService(collection: "categories");
   List<ProductModel> products = [];
   List<ProductModel> promotionProducts = [];
 
