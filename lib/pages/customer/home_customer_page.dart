@@ -28,6 +28,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
   final FirestoreService _categoryService =
       FirestoreService(collection: "categories");
   List<ProductModel> products = [];
+  List<ProductModel> productsAux = [];
   List<CategoryModel> categories = [];
   List<ProductModel> promotionProducts = [];
 
@@ -43,13 +44,27 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
   getDataFirebase() async {
     categories = await _categoryService.getCategories();
     products = await _productService.getProducts();
-
-    categories.insert(0, CategoryModel(category: "Todos", status: true),);
+    productsAux = products;
+    categories.insert(
+      0,
+      CategoryModel(
+        id: "0",
+        category: "Todos",
+        status: true,
+      ),
+    );
 
     promotionProducts =
         products.where((element) => element.discount > 0).toList();
 
     setState(() {});
+  }
+
+  filterCategory(String categoryId) {
+    products = productsAux;
+    if(categoryId != "0"){
+      products = products.where((element) => element.categoryId == categoryId).toList();
+    }
   }
 
   @override
@@ -106,10 +121,13 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                         .map(
                           (e) => ItemCategoryWidget(
                             text: e.category,
-                            selected: indexCategory == categories.indexOf(e) ? true : false,
-                            onTap: (){
+                            selected: indexCategory == categories.indexOf(e)
+                                ? true
+                                : false,
+                            onTap: () {
                               indexCategory = categories.indexOf(e);
-                              setState((){});
+                              filterCategory(e.id!);
+                              setState(() {});
                             },
                           ),
                         )
