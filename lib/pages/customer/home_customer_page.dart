@@ -24,6 +24,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
 
   final FirestoreService _productService = FirestoreService(collection: "products");
   List<ProductModel> products = [];
+  List<ProductModel> promotionProducts = [];
 
   int indexCategory = 0;
 
@@ -36,6 +37,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
 
   getDataFirebase() async{
     products = await _productService.getProducts();
+    promotionProducts = products.where((element) => element.discount > 0).toList();
     setState((){});
   }
 
@@ -67,7 +69,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   height: 260.0,
                   child: PageView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: products.length,
+                    itemCount: promotionProducts.length,
                     controller: PageController(
                       initialPage: 0,
                       viewportFraction: 0.8,
@@ -75,7 +77,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                     padEnds: false,
                     itemBuilder: (BuildContext context, int index) {
                       return ItemPromotionWidget(
-                        productModel: products[index],
+                        productModel: promotionProducts[index],
                       );
                     },
                   ),

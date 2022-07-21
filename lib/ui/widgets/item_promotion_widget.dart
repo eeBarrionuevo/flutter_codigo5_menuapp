@@ -14,7 +14,6 @@ class ItemPromotionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    print(productModel.id);
 
     return InkWell(
       borderRadius: BorderRadius.circular(14.0),
