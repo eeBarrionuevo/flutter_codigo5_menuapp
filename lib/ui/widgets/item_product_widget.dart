@@ -77,15 +77,36 @@ class ItemProductWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    productModel.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                      color: kBrandPrimaryColor,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        productModel.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          color: kBrandPrimaryColor,
+                        ),
+                      ),
+                      productModel.discount > 0 ? Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6.0, vertical: 4.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: kBrandSecondaryColor,
+                        ),
+                        child: Text(
+                          "${productModel.discount}% desc",
+                          style: const TextStyle(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ) : const SizedBox(),
+                    ],
                   ),
                   Text(
                     "S./ ${productModel.price.toStringAsFixed(2)}",

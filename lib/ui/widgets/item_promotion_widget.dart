@@ -62,8 +62,8 @@ class ItemPromotionWidget extends StatelessWidget {
                       color: kBrandSecondaryColor,
                     ),
                     child: Text(
-                      "50% desc",
-                      style: TextStyle(
+                      "${productModel.discount}% desc",
+                      style: const TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
