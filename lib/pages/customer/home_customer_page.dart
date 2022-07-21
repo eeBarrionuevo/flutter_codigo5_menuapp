@@ -137,7 +137,9 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   physics: const ScrollPhysics(),
                   itemCount: products.length,
                   itemBuilder: (BuildContext context, int index){
-                    return ItemProductWidget();
+                    return ItemProductWidget(
+                      productModel: products[index],
+                    );
                   },
                 ),
               ],

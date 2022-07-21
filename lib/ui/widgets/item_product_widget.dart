@@ -1,12 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/pages/customer/product_detail_page.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemProductWidget extends StatelessWidget {
-  const ItemProductWidget({Key? key}) : super(key: key);
+  ProductModel productModel;
+
+  ItemProductWidget({
+    required this.productModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +50,11 @@ class ItemProductWidget extends StatelessWidget {
                 child: CachedNetworkImage(
                   width: 120,
                   height: 120,
-                  imageUrl: "https://www.localburger.com.co/web/image/725",
+                  imageUrl: productModel.image,
                   fit: BoxFit.cover,
                   fadeInCurve: Curves.easeIn,
                   fadeInDuration: const Duration(milliseconds: 800),
-                  progressIndicatorBuilder: (context, url, downloadProgress){
+                  progressIndicatorBuilder: (context, url, downloadProgress) {
                     return Center(
                       child: SizedBox(
                         width: 20,
@@ -70,7 +75,7 @@ class ItemProductWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Cheese Burger Total",
+                    productModel.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -80,7 +85,7 @@ class ItemProductWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "S./ 30.00",
+                    "S./ ${productModel.price.toStringAsFixed(2)}",
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,
@@ -89,8 +94,7 @@ class ItemProductWidget extends StatelessWidget {
                   ),
                   divider3,
                   TextNormal(
-                    text:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                    text: productModel.description,
                     color: kBrandPrimaryColor.withOpacity(0.6),
                     maxLines: 2,
                     textOverflow: TextOverflow.ellipsis,
@@ -105,7 +109,7 @@ class ItemProductWidget extends StatelessWidget {
                       ),
                       dividerWidth3,
                       Text(
-                        "4.0",
+                        productModel.rate.toStringAsFixed(1),
                         style: TextStyle(
                           fontSize: 12.0,
                           color: kBrandPrimaryColor,
@@ -115,7 +119,7 @@ class ItemProductWidget extends StatelessWidget {
                       Text(" | "),
                       dividerWidth3,
                       Text(
-                        "20 min.",
+                        "${productModel.time} min.",
                         style: TextStyle(
                           fontSize: 12.0,
                           color: kBrandPrimaryColor,
@@ -125,7 +129,7 @@ class ItemProductWidget extends StatelessWidget {
                       Text(" | "),
                       dividerWidth3,
                       Text(
-                        "Porciones: 1",
+                        "Porciones: ${productModel.serving}",
                         style: TextStyle(
                           fontSize: 12.0,
                           color: kBrandPrimaryColor,
