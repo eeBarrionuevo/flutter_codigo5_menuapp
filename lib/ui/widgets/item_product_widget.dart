@@ -25,6 +25,7 @@ class ItemProductWidget extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ProductDetailPage(
               productModel: productModel,
+              isGeneral: true,
             ),
           ),
         );
@@ -46,7 +47,7 @@ class ItemProductWidget extends StatelessWidget {
         child: Row(
           children: [
             Hero(
-              tag: productModel.id!,
+              tag: "${productModel.id!}general",
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(14.0),
                 child: CachedNetworkImage(

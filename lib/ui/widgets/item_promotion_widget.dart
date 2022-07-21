@@ -26,6 +26,7 @@ class ItemPromotionWidget extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ProductDetailPage(
               productModel: productModel,
+              isGeneral: false,
             ),
           ),
         );
@@ -40,7 +41,7 @@ class ItemPromotionWidget extends StatelessWidget {
             return Stack(
               children: [
                 Hero(
-                  tag: productModel.id!,
+                  tag: "${productModel.id!}promotion",
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image(

@@ -8,8 +8,12 @@ import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ProductDetailPage extends StatefulWidget {
   ProductModel productModel;
+  bool isGeneral;
 
-  ProductDetailPage({required this.productModel});
+  ProductDetailPage({
+    required this.productModel,
+    required this.isGeneral,
+  });
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -33,7 +37,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   clipBehavior: Clip.none,
                   children: [
                     Hero(
-                      tag: widget.productModel.id!,
+                      tag: "${widget.productModel.id!}${widget.isGeneral ? "general" : "promotion"}",
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(45.0),
