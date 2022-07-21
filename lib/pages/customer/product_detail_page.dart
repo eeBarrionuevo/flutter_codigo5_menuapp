@@ -103,7 +103,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               divider3,
                               TextNormal(
-                                text: "Plato de Fondo",
+                                text: widget.productModel.categoryDescription!,
                               ),
                               divider3,
                               Row(

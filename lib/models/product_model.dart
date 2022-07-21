@@ -3,6 +3,7 @@ class ProductModel {
   ProductModel({
     required this.image,
     required this.categoryId,
+    this.categoryDescription,
     required this.rate,
     required this.price,
     required this.name,
@@ -16,6 +17,7 @@ class ProductModel {
 
   String image;
   String categoryId;
+  String? categoryDescription;
   double rate;
   double price;
   String name;

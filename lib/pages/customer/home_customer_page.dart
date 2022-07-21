@@ -44,6 +44,13 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
   getDataFirebase() async {
     categories = await _categoryService.getCategories();
     products = await _productService.getProducts();
+
+    products = products.map((e){
+      String categoryDescription = categories.firstWhere((element) => element.id == e.categoryId).category;
+      e.categoryDescription = categoryDescription;
+      return e;
+    }).toList();
+
     productsAux = products;
     categories.insert(
       0,
@@ -172,7 +179,8 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                             ),
                             divider6,
                             TextNormal(
-                                text: "Aún no hay productos en esta categoría")
+                              text: "Aún no hay productos en esta categoría",
+                            ),
                           ],
                         ),
                       ),

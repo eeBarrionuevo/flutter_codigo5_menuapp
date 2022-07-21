@@ -96,7 +96,7 @@ class ItemPromotionWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6.0),
                           ),
                           child: Text(
-                            "Plato de fondo",
+                            productModel.categoryDescription!,
                             style: TextStyle(
                               color: kBrandPrimaryColor,
                             ),
