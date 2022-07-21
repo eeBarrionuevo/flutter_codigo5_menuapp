@@ -14,7 +14,7 @@ class ItemPromotionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    double height = MediaQuery.of(context).size.height;
+    print(productModel.id);
 
     return InkWell(
       borderRadius: BorderRadius.circular(14.0),
