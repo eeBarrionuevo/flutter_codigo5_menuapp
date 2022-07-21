@@ -108,13 +108,27 @@ class ItemProductWidget extends StatelessWidget {
                       ) : const SizedBox(),
                     ],
                   ),
-                  Text(
-                    "S./ ${productModel.price.toStringAsFixed(2)}",
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      color: kBrandPrimaryColor,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        "S./ ${productModel.price.toStringAsFixed(2)}",
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          decoration: productModel.discount > 0 ? TextDecoration.lineThrough : TextDecoration.none,
+                          fontWeight: FontWeight.w600,
+                          color:  productModel.discount > 0 ?  kBrandPrimaryColor.withOpacity(0.4) : kBrandPrimaryColor,
+                        ),
+                      ),
+                      dividerWidth6,
+                      productModel.discount > 0 ? Text(
+                        "S./ ${ (productModel.price - productModel.price * productModel.discount/100).toStringAsFixed(2)}",
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: kBrandPrimaryColor,
+                        ),
+                      ) : const SizedBox(),
+                    ],
                   ),
                   divider3,
                   TextNormal(
