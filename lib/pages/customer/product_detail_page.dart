@@ -1,11 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_ingredient_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ProductDetailPage extends StatefulWidget {
+
+  ProductModel productModel;
+  ProductDetailPage({required this.productModel});
+
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
 }
@@ -37,7 +42,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         child: CachedNetworkImage(
                           width: double.infinity,
                           height: height * 0.45,
-                          imageUrl: "https://www.localburger.com.co/web/image/725",
+                          imageUrl: widget.productModel.image,
                           fit: BoxFit.cover,
                           fadeInCurve: Curves.easeIn,
                           fadeInDuration: const Duration(milliseconds: 800),
@@ -81,7 +86,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "Cheese Burger Total",
+                                widget.productModel.name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.center,
@@ -106,7 +111,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   ),
                                   dividerWidth3,
                                   Text(
-                                    "4.0",
+                                    widget.productModel.rate.toStringAsFixed(1),
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       color: kBrandPrimaryColor,
@@ -116,7 +121,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   Text(" | "),
                                   dividerWidth3,
                                   Text(
-                                    "20 min.",
+                                    "${widget.productModel.time} min.",
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       color: kBrandPrimaryColor,
@@ -126,7 +131,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   Text(" | "),
                                   dividerWidth3,
                                   Text(
-                                    "Porciones: 1",
+                                    "Porciones: ${widget.productModel.serving}",
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       color: kBrandPrimaryColor,
@@ -136,7 +141,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               divider6,
                               Text(
-                                "S./ 30.00",
+                                "S./ ${widget.productModel.price.toStringAsFixed(2)}",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.center,
@@ -191,8 +196,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       ),
                       divider12,
                       TextNormal(
-                        text:
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        text: widget.productModel.description,
                         color: kBrandPrimaryColor.withOpacity(0.6),
                       ),
                       divider12,

@@ -24,7 +24,9 @@ class ItemPromotionWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailPage(),
+            builder: (context) => ProductDetailPage(
+              productModel: productModel,
+            ),
           ),
         );
       },
