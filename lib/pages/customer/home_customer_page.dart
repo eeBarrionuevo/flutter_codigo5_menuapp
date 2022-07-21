@@ -67,14 +67,16 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   height: 260.0,
                   child: PageView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: 1,
+                    itemCount: products.length,
                     controller: PageController(
                       initialPage: 0,
                       viewportFraction: 0.8,
                     ),
                     padEnds: false,
                     itemBuilder: (BuildContext context, int index) {
-                      return ItemPromotionWidget();
+                      return ItemPromotionWidget(
+                        productModel: products[index],
+                      );
                     },
                   ),
                 ),
