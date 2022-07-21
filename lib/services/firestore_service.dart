@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
 
 class FirestoreService{
@@ -23,8 +24,15 @@ class FirestoreService{
     return products;
   }
 
-  Future<List> getCategories() async{
-    return [];
+  Future<List<CategoryModel>> getCategories() async{
+    List<CategoryModel> categories = [];
+    QuerySnapshot _querySnapshot = await _collectionReference.get();
+    _querySnapshot.docs.forEach((element) {
+      CategoryModel categoryModel = CategoryModel.fromJson(element.data() as Map<String, dynamic>);
+      categoryModel.id = element.id;
+      categories.add(categoryModel);
+    });
+    return categories;
   }
 
 
