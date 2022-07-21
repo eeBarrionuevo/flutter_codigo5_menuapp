@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
@@ -21,10 +23,12 @@ class HomeCustomerPage extends StatefulWidget {
 }
 
 class _HomeCustomerPageState extends State<HomeCustomerPage> {
-
-  final FirestoreService _productService = FirestoreService(collection: "products");
-  final FirestoreService _categoryService = FirestoreService(collection: "categories");
+  final FirestoreService _productService =
+      FirestoreService(collection: "products");
+  final FirestoreService _categoryService =
+      FirestoreService(collection: "categories");
   List<ProductModel> products = [];
+  List<CategoryModel> categories = [];
   List<ProductModel> promotionProducts = [];
 
   int indexCategory = 0;
@@ -36,10 +40,16 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
     getDataFirebase();
   }
 
-  getDataFirebase() async{
+  getDataFirebase() async {
+    categories = await _categoryService.getCategories();
     products = await _productService.getProducts();
-    promotionProducts = products.where((element) => element.discount > 0).toList();
-    setState((){});
+
+    categories.insert(0, CategoryModel(category: "Todos", status: true),);
+
+    promotionProducts =
+        products.where((element) => element.discount > 0).toList();
+
+    setState(() {});
   }
 
   @override
@@ -92,48 +102,29 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
                   child: Row(
-                    children: [
-                      ItemCategoryWidget(
-                        text: "Todos",
-                        selected: indexCategory == 0,
-                        onTap: () {
-                          indexCategory = 0;
-                          setState(() {});
-                        },
-                      ),
-                      ItemCategoryWidget(
-                        text: "Platos de fondo",
-                        selected: indexCategory == 1,
-                        onTap: () {
-                          indexCategory = 1;
-                          setState(() {});
-                        },
-                      ),
-                      ItemCategoryWidget(
-                        text: "Bebidas",
-                        selected: indexCategory == 2,
-                        onTap: () {
-                          indexCategory = 2;
-                          setState(() {});
-                        },
-                      ),
-                      ItemCategoryWidget(
-                        text: "Entradas",
-                        selected: indexCategory == 3,
-                        onTap: () {
-                          indexCategory = 3;
-                          setState(() {});
-                        },
-                      ),
-                      ItemCategoryWidget(
-                        text: "Postres",
-                        selected: indexCategory == 4,
-                        onTap: () {
-                          indexCategory = 4;
-                          setState(() {});
-                        },
-                      ),
-                    ],
+                    children: categories
+                        .map(
+                          (e) => ItemCategoryWidget(
+                            text: e.category,
+                            selected: indexCategory == categories.indexOf(e) ? true : false,
+                            onTap: (){
+                              indexCategory = categories.indexOf(e);
+                              setState((){});
+                            },
+                          ),
+                        )
+                        .toList(),
+                    // children: List.generate(
+                    //   categories.length,
+                    //   (index) => ItemCategoryWidget(
+                    //     text: categories[index].category,
+                    //     selected: indexCategory == index ? true : false,
+                    //     onTap: (){
+                    //       indexCategory = index;
+                    //       setState((){});
+                    //     },
+                    //   ),
+                    // ),
                   ),
                 ),
                 divider20,
@@ -141,7 +132,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   itemCount: products.length,
-                  itemBuilder: (BuildContext context, int index){
+                  itemBuilder: (BuildContext context, int index) {
                     return ItemProductWidget(
                       productModel: products[index],
                     );
