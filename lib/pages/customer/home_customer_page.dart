@@ -62,8 +62,10 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
 
   filterCategory(String categoryId) {
     products = productsAux;
-    if(categoryId != "0"){
-      products = products.where((element) => element.categoryId == categoryId).toList();
+    if (categoryId != "0") {
+      products = products
+          .where((element) => element.categoryId == categoryId)
+          .toList();
     }
   }
 
@@ -146,16 +148,34 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   ),
                 ),
                 divider20,
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  itemCount: products.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ItemProductWidget(
-                      productModel: products[index],
-                    );
-                  },
-                ),
+                products.isNotEmpty
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemCount: products.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ItemProductWidget(
+                            productModel: products[index],
+                          );
+                        },
+                      )
+                    : Container(
+                        width: double.infinity,
+                        height: 200,
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/box.png',
+                              height: 80.0,
+                            ),
+                            divider6,
+                            TextNormal(
+                                text: "Aún no hay productos en esta categoría")
+                          ],
+                        ),
+                      ),
               ],
             ),
           ),
