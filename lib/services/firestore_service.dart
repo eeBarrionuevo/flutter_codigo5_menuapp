@@ -23,6 +23,10 @@ class FirestoreService{
     return products;
   }
 
+  Future<List> getCategories() async{
+    return [];
+  }
+
 
 
 }
