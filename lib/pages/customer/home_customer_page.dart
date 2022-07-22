@@ -99,10 +99,11 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                 divider12,
                 SearchWidget(
                   onTap: () async {
-                    await showSearch(
+                    final res = await showSearch(
                       context: context,
                       delegate: SearchProductDelegate(),
                     );
+                    print(res);
                   },
                 ),
                 divider12,
