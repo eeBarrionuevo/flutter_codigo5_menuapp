@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:menuapp/pages/admin/home_admin_page.dart';
 import 'package:menuapp/pages/customer/home_customer_page.dart';
 import 'package:menuapp/pages/customer/product_detail_page.dart';
 
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(),
       ),
-      home: HomeCustomerPage(),
+      // home: HomeCustomerPage(),
       // home: ProductDetailPage(),
+      home: HomeAdminPage(),
     );
   }
 }
