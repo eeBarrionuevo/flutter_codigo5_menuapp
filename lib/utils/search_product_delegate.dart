@@ -1,18 +1,30 @@
-
 import 'package:flutter/material.dart';
 
 class SearchProductDelegate extends SearchDelegate {
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      Text("buildActions", style: TextStyle(color: Colors.redAccent,),),
+      IconButton(
+        onPressed: () {
+          print(query);
+        },
+        icon: Icon(
+          Icons.ac_unit,
+        ),
+      ),
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
     // TODO: implement buildLeading
-    return Text("buildLeading", style: TextStyle(color: Colors.redAccent,),);
+    return Text(
+      "buildLeading",
+      style: TextStyle(
+        color: Colors.redAccent,
+      ),
+    );
   }
 
   @override
@@ -26,5 +38,4 @@ class SearchProductDelegate extends SearchDelegate {
     // TODO: implement buildSuggestions
     return Text("buildSuggestions");
   }
-  
 }
