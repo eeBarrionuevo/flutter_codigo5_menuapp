@@ -46,13 +46,19 @@ class SearchProductDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) => Theme.of(context).copyWith(
     hintColor: Colors.white,
-    textTheme: TextTheme(
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      backgroundColor: Colors.white,
+      iconTheme: IconThemeData(
+        color: kBrandPrimaryColor,
+        size: 22.0
+      ),
     ),
-    // textTheme: TextTheme(
-    //   // headline1: TextStyle(
-    //   //   color: Colors.red,
-    //   // ),
-    // ),
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        color: kBrandPrimaryColor,
+      ),
+    ),
   );
 
 
