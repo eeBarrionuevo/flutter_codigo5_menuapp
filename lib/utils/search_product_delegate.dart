@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menuapp/models/product_model.dart';
+import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/item_product_widget.dart';
 
 class SearchProductDelegate extends SearchDelegate {
@@ -20,6 +21,34 @@ class SearchProductDelegate extends SearchDelegate {
     "Mariela",
     "Angela",
   ];
+
+  @override
+  String get searchFieldLabel => "Buscar producto";
+  
+  @override
+  TextStyle get searchFieldStyle => TextStyle(
+    color: kBrandPrimaryColor.withOpacity(0.5),
+    fontSize: 14.0,
+  );
+
+  @override
+  InputDecorationTheme get searchFieldDecorationTheme => InputDecorationTheme(
+    hintStyle: TextStyle(
+      fontSize: 14.0,
+    ),
+    filled: true,
+    // fillColor: Colors.redAccent,
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide.none,
+    ),
+  );
+
+  @override
+  ThemeData appBarTheme(BuildContext context) => ThemeData(
+
+  );
+
+
 
   @override
   List<Widget>? buildActions(BuildContext context) {
