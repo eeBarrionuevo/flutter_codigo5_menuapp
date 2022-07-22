@@ -59,6 +59,18 @@ class SearchProductDelegate extends SearchDelegate {
         color: kBrandPrimaryColor,
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: kBrandPrimaryColor.withOpacity(0.5),
+      ),
+      filled: true,
+      contentPadding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 14.0),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(14.0),
+      )
+    ),
+
   );
 
 
