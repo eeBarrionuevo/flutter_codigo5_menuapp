@@ -44,8 +44,17 @@ class SearchProductDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    print("RESULTS: $query");
-    return Text("buildResults");
+
+    List<String> namesResult = names.where((element)=> element.toLowerCase().contains(query.toLowerCase())).toList();
+
+    return ListView.builder(
+      itemCount: namesResult.length,
+      itemBuilder: (BuildContext context, int index){
+        return ListTile(
+          title: Text(namesResult[index]),
+        );
+      },
+    );
   }
 
   @override
