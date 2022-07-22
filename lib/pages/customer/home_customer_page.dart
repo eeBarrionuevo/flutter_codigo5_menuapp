@@ -14,6 +14,7 @@ import 'package:menuapp/ui/widgets/item_product_widget.dart';
 import 'package:menuapp/ui/widgets/item_promotion_widget.dart';
 import 'package:menuapp/ui/widgets/search_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
+import 'package:menuapp/utils/search_product_delegate.dart';
 
 class HomeCustomerPage extends StatefulWidget {
   const HomeCustomerPage({Key? key}) : super(key: key);
@@ -96,7 +97,14 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   text: "Las espadas de Ramón",
                 ),
                 divider12,
-                SearchWidget(),
+                SearchWidget(
+                  onTap: () async {
+                    await showSearch(
+                      context: context,
+                      delegate: SearchProductDelegate(),
+                    );
+                  },
+                ),
                 divider12,
                 TextNormal(
                   text: "Promociones",
