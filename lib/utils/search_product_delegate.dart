@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/models/product_model.dart';
+import 'package:menuapp/ui/widgets/item_product_widget.dart';
 
 class SearchProductDelegate extends SearchDelegate {
+  List<ProductModel> products;
 
+  SearchProductDelegate({
+    required this.products,
+  });
 
   List<String> names = [
     "Juan",
@@ -44,14 +50,15 @@ class SearchProductDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-
-    List<String> namesResult = names.where((element)=> element.toLowerCase().contains(query.toLowerCase())).toList();
-
+    List<ProductModel> productsResult = products
+        .where((element) =>
+        element.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
     return ListView.builder(
-      itemCount: namesResult.length,
-      itemBuilder: (BuildContext context, int index){
-        return ListTile(
-          title: Text(namesResult[index]),
+      itemCount: productsResult.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ItemProductWidget(
+          productModel: productsResult[index],
         );
       },
     );
@@ -59,14 +66,15 @@ class SearchProductDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
-    List<String> namesSuggestion = names.where((element)=> element.toLowerCase().contains(query.toLowerCase())).toList();
-
+    List<ProductModel> productsSuggestion = products
+        .where((element) =>
+            element.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
     return ListView.builder(
-      itemCount: namesSuggestion.length,
-      itemBuilder: (BuildContext context, int index){
-        return ListTile(
-          title: Text(namesSuggestion[index]),
+      itemCount: productsSuggestion.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ItemProductWidget(
+          productModel: productsSuggestion[index],
         );
       },
     );

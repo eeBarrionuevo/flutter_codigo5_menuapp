@@ -101,7 +101,9 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                   onTap: () async {
                     final res = await showSearch(
                       context: context,
-                      delegate: SearchProductDelegate(),
+                      delegate: SearchProductDelegate(
+                        products: products,
+                      ),
                     );
                     print(res);
                   },
