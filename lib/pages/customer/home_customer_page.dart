@@ -35,6 +35,8 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
 
   int indexCategory = 0;
 
+  bool isLoading = true;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -67,6 +69,9 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
     promotionProducts =
         products.where((element) => element.discount > 0).toList();
 
+
+    isLoading = false;
+
     setState(() {});
   }
 
@@ -82,7 +87,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: !isLoading ? SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -102,7 +107,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                     final res = await showSearch(
                       context: context,
                       delegate: SearchProductDelegate(
-                        products: products,
+                        products: productsAux,
                       ),
                     );
                     print(res);
@@ -199,6 +204,15 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
                       ),
               ],
             ),
+          ),
+        ),
+      ) : Center(
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            color: kBrandSecondaryColor,
           ),
         ),
       ),
