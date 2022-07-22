@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/item_product_widget.dart';
@@ -48,15 +49,16 @@ class SearchProductDelegate extends SearchDelegate {
     hintColor: Colors.white,
     appBarTheme: AppBarTheme(
       elevation: 0,
+      toolbarHeight: 76,
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(
         color: kBrandPrimaryColor,
         size: 22.0
       ),
     ),
-    textTheme: TextTheme(
-      headline6: TextStyle(
-        color: kBrandPrimaryColor,
+    textTheme: GoogleFonts.manropeTextTheme().copyWith(
+      headline6: const TextStyle(
+        fontSize: 14.0,
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
