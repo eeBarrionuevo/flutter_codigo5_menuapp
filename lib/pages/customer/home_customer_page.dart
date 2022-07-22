@@ -45,8 +45,10 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
     categories = await _categoryService.getCategories();
     products = await _productService.getProducts();
 
-    products = products.map((e){
-      String categoryDescription = categories.firstWhere((element) => element.id == e.categoryId).category;
+    products = products.map((e) {
+      String categoryDescription = categories
+          .firstWhere((element) => element.id == e.categoryId)
+          .category;
       e.categoryDescription = categoryDescription;
       return e;
     }).toList();
