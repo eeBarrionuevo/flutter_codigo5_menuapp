@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:menuapp/models/product_model.dart';
+import 'package:menuapp/pages/admin/product_form_page.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_admin_producto_widget.dart';
@@ -23,7 +24,7 @@ class ProductPage extends StatelessWidget {
       ),
       floatingActionButton: InkWell(
         onTap: (){
-          
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductFormPage()));
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),

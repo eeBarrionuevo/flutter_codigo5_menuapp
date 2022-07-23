@@ -13,6 +13,16 @@ class ProductFormPage extends StatelessWidget {
           text: "Agregar producto",
         ),
       ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
