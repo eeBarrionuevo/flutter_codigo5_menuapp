@@ -30,52 +30,69 @@ class ProductPage extends StatelessWidget {
                 ),
               ],
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: [
-                CircleAvatar(
-                  radius: 30.0,
-                  backgroundImage: NetworkImage(
-                      "https://comidaperuanaweb.org/wp-content/uploads/2018/10/Rocoto-Relleno-1-1-1.png"),
-                ),
-                dividerWidth10,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-                        decoration: BoxDecoration(
-                          color: kBrandSecondaryColor.withOpacity(0.75),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Text(
-                          "Plato de fondo",
-                          style: TextStyle(
-                            fontSize: 12.0
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 30.0,
+                      backgroundImage: NetworkImage(
+                          "https://comidaperuanaweb.org/wp-content/uploads/2018/10/Rocoto-Relleno-1-1-1.png"),
+                    ),
+                    dividerWidth10,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                            decoration: BoxDecoration(
+                              color: kBrandSecondaryColor.withOpacity(0.75),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Text(
+                              "Plato de fondo",
+                              style: TextStyle(
+                                  fontSize: 12.0
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      divider3,
-                      Text(
-                        "Rocoto Relleno",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      divider3,
-                      TextNormal(
-                        maxLines: 2,
-                        textOverflow: TextOverflow.ellipsis,
-                        color: kBrandPrimaryColor.withOpacity(.6),
-                        text:
+                          divider3,
+                          Text(
+                            "Rocoto Relleno",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          divider3,
+                          TextNormal(
+                            maxLines: 2,
+                            textOverflow: TextOverflow.ellipsis,
+                            color: kBrandPrimaryColor.withOpacity(.6),
+                            text:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                          ),
+                          divider6,
+                          Row(
+                            children: [Text("S/ 30.00   |   7 min.")],
+                          ),
+                        ],
                       ),
-                      divider6,
-                      Row(
-                        children: [Text("S/ 30.00   |   7 min.")],
-                      ),
-                    ],
+                    ),
+                  ],
+                ),
+                Positioned(
+                  right: -12,
+                  top: -10,
+                  child: PopupMenuButton(
+                    icon: Icon(Icons.more_vert, color: kBrandPrimaryColor.withOpacity(0.8),),
+                    itemBuilder: (context){
+                      return [
+                        PopupMenuItem(child: Text("Actualizar",),),
+                        PopupMenuItem(child: Text("Eliminar",),),
+                      ];
+                    },
                   ),
                 ),
               ],
