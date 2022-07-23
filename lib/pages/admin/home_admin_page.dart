@@ -30,6 +30,7 @@ class HomeAdminPage extends StatelessWidget {
                     H1(
                       text: "Las espadas de Ramón",
                     ),
+                    divider30,
                     GridView.count(
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
@@ -43,7 +44,7 @@ class HomeAdminPage extends StatelessWidget {
                         ItemMenuWidget(),
                         ItemMenuWidget(),
                         ItemMenuWidget(),
-                        ItemMenuWidget(),
+
                       ],
                     ),
                   ],
