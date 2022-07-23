@@ -1,6 +1,7 @@
 
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+
 
 const divider3 = SizedBox(height: 3.0,);
 const divider6 = SizedBox(height: 6.0,);
@@ -21,3 +22,14 @@ const dividerWidth6 = SizedBox(
 const dividerWidth10 = SizedBox(
   width: 10.0,
 );
+
+Widget circleWidget(double radius) {
+  return Container(
+    height: radius * 2,
+    width: radius * 2,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: Colors.white.withOpacity(0.13),
+    ),
+  );
+}
