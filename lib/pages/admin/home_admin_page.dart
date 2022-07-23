@@ -38,12 +38,22 @@ class HomeAdminPage extends StatelessWidget {
                       mainAxisSpacing: 12.0,
                       crossAxisSpacing: 12.0,
                       children: [
-                        ItemMenuWidget(),
-                        ItemMenuWidget(),
-                        ItemMenuWidget(),
-                        ItemMenuWidget(),
-                        ItemMenuWidget(),
-                        ItemMenuWidget(),
+                        ItemMenuWidget(
+                          text: "Ordenes",
+                          img: "burger",
+                        ),
+                        ItemMenuWidget(
+                          text: "Productos",
+                          img: "products",
+                        ),
+                        ItemMenuWidget(
+                          text: "Categorías",
+                          img: "category",
+                        ),
+                        ItemMenuWidget(
+                          text: "Reportes",
+                          img: "dash",
+                        ),
 
                       ],
                     ),

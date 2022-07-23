@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/widgets/general_widget.dart';
+import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemMenuWidget extends StatelessWidget {
+  String text;
+  String img;
+
+  ItemMenuWidget({
+    required this.text,
+    required this.img,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,8 +44,12 @@ class ItemMenuWidget extends StatelessWidget {
               ],
             ),
             child: Image.asset(
-              'assets/images/burger.png',
+              'assets/images/$img.png',
             ),
+          ),
+          divider12,
+          TextNormal(
+            text: text,
           ),
         ],
       ),
