@@ -17,7 +17,7 @@ class ProductPage extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) {
           return Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+            padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
             margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -31,6 +31,7 @@ class ProductPage extends StatelessWidget {
               ],
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
                   radius: 30.0,
@@ -45,7 +46,7 @@ class ProductPage extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
                         decoration: BoxDecoration(
-                          color: kBrandSecondaryColor,
+                          color: kBrandSecondaryColor.withOpacity(0.75),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Text(
@@ -55,6 +56,7 @@ class ProductPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      divider3,
                       Text(
                         "Rocoto Relleno",
                         style: TextStyle(
