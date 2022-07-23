@@ -30,13 +30,35 @@ class HomeAdminPage extends StatelessWidget {
                     H1(
                       text: "Las espadas de Ramón",
                     ),
+                    divider20,
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14.0),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 8,
+                            offset: const Offset(4, 4),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          TextNormal(
+                            text: "23 de Abril del 2022",
+                          ),
+                        ],
+                      ),
+                    ),
                     divider30,
                     GridView.count(
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
                       crossAxisCount: 2,
-                      mainAxisSpacing: 12.0,
-                      crossAxisSpacing: 12.0,
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0,
                       children: [
                         ItemMenuWidget(
                           text: "Ordenes",
@@ -54,7 +76,6 @@ class HomeAdminPage extends StatelessWidget {
                           text: "Reportes",
                           img: "dash",
                         ),
-
                       ],
                     ),
                   ],
