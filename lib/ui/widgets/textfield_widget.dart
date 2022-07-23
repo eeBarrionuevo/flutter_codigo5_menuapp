@@ -4,14 +4,16 @@ import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({Key? key}) : super(key: key);
+
+  String hintText;
+  TextFieldWidget({required this.hintText,});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextNormal(text: " Nombre del producto"),
+        TextNormal(text: " $hintText"),
         divider6,
         Container(
           margin: const EdgeInsets.only(bottom: 22.0),
@@ -29,7 +31,7 @@ class TextFieldWidget extends StatelessWidget {
               fontSize: 14.0,
             ),
             decoration: InputDecoration(
-              hintText: "Nombre producto",
+              hintText: hintText,
               hintStyle: const TextStyle(
                 fontSize: 14.0,
               ),
