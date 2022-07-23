@@ -42,18 +42,36 @@ class ProductPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                        decoration: BoxDecoration(
+                          color: kBrandSecondaryColor,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Text(
+                          "Plato de fondo",
+                          style: TextStyle(
+                            fontSize: 12.0
+                          ),
+                        ),
+                      ),
                       Text(
                         "Rocoto Relleno",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      divider3,
                       TextNormal(
                         maxLines: 2,
                         textOverflow: TextOverflow.ellipsis,
                         color: kBrandPrimaryColor.withOpacity(.6),
                         text:
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                      ),
+                      divider6,
+                      Row(
+                        children: [Text("S/ 30.00   |   7 min.")],
                       ),
                     ],
                   ),
