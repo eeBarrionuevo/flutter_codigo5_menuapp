@@ -8,8 +8,8 @@ import 'package:menuapp/ui/widgets/item_admin_producto_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ProductPage extends StatelessWidget {
-
-  final CollectionReference _productReference = FirebaseFirestore.instance.collection('products');
+  final CollectionReference _productReference =
+      FirebaseFirestore.instance.collection('products');
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +17,31 @@ class ProductPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kBrandPrimaryColor,
         title: Text("Productos"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.search,
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: Container(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.add,),
+          ],
+        ),
       ),
       body: StreamBuilder(
         stream: _productReference.snapshots(),
-        builder: (BuildContext context, AsyncSnapshot snap){
-          if(snap.hasData){
-
+        builder: (BuildContext context, AsyncSnapshot snap) {
+          if (snap.hasData) {
             QuerySnapshot collection = snap.data;
-            List<ProductModel> products = collection.docs.map((e){
-              ProductModel product = ProductModel.fromJson(e.data() as Map<String, dynamic>);
+            List<ProductModel> products = collection.docs.map((e) {
+              ProductModel product =
+                  ProductModel.fromJson(e.data() as Map<String, dynamic>);
               product.id = e.id;
               return product;
             }).toList();
@@ -33,7 +49,9 @@ class ProductPage extends StatelessWidget {
             return ListView.builder(
               itemCount: products.length,
               itemBuilder: (context, index) {
-                return ItemAdminProductWidget();
+                return ItemAdminProductWidget(
+                  productModel: products[index],
+                );
               },
             );
           }

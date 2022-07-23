@@ -1,12 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemAdminProductWidget extends StatelessWidget {
-  const ItemAdminProductWidget({Key? key}) : super(key: key);
+
+  ProductModel productModel;
+  ItemAdminProductWidget({required this.productModel,});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,8 @@ class ItemAdminProductWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30.0,
-                backgroundImage: NetworkImage(
-                    "https://comidaperuanaweb.org/wp-content/uploads/2018/10/Rocoto-Relleno-1-1-1.png"),
+                backgroundColor: Colors.black26,
+                backgroundImage: NetworkImage(productModel.image),
               ),
               dividerWidth10,
               Expanded(
@@ -40,7 +43,7 @@ class ItemAdminProductWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 8.0, vertical: 2.0),
                       decoration: BoxDecoration(
                         color: kBrandSecondaryColor.withOpacity(0.75),
@@ -53,7 +56,7 @@ class ItemAdminProductWidget extends StatelessWidget {
                     ),
                     divider3,
                     Text(
-                      "Rocoto Relleno",
+                      productModel.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -63,12 +66,11 @@ class ItemAdminProductWidget extends StatelessWidget {
                       maxLines: 2,
                       textOverflow: TextOverflow.ellipsis,
                       color: kBrandPrimaryColor.withOpacity(.6),
-                      text:
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                      text: productModel.description,
                     ),
                     divider6,
                     Row(
-                      children: [Text("S/ 30.00   |   7 min.")],
+                      children: [Text("S/ ${productModel.price.toStringAsFixed(2)}   |   ${productModel.time} min.")],
                     ),
                   ],
                 ),
