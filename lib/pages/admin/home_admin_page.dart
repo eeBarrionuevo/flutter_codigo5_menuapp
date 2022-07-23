@@ -28,6 +28,28 @@ class HomeAdminPage extends StatelessWidget {
                   H1(
                     text: "Las espadas de Ramón",
                   ),
+                  GridView.count(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 12.0,
+                    crossAxisSpacing: 12.0,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 12,
+                              offset: const Offset(4, 4),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
