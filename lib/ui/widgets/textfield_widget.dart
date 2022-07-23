@@ -37,6 +37,7 @@ class TextFieldWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 14.0,
             ),
+            keyboardType: isNumeric! ? TextInputType.number : TextInputType.text,
             decoration: InputDecoration(
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
