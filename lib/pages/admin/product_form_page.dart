@@ -23,18 +23,21 @@ class ProductFormPage extends StatelessWidget {
               ),
               TextFieldWidget(
                 hintText: "Descripción",
+                maxLines: 4,
               ),
               Row(
                 children: [
                   Expanded(
                     child: TextFieldWidget(
                       hintText: "Precio",
+                      isNumeric: true,
                     ),
                   ),
                   dividerWidth10,
                   Expanded(
                     child: TextFieldWidget(
                       hintText: "Descuento",
+                      isNumeric: true,
                     ),
                   ),
                 ],
@@ -44,12 +47,14 @@ class ProductFormPage extends StatelessWidget {
                   Expanded(
                     child: TextFieldWidget(
                       hintText: "Tiempo",
+                      isNumeric: true,
                     ),
                   ),
                   dividerWidth10,
                   Expanded(
                     child: TextFieldWidget(
                       hintText: "Porciones",
+                      isNumeric: true,
                     ),
                   ),
                 ],
@@ -59,6 +64,7 @@ class ProductFormPage extends StatelessWidget {
                   Expanded(
                     child: TextFieldWidget(
                       hintText: "Calificación",
+                      isNumeric: true,
                     ),
                   ),
                   dividerWidth10,

@@ -1,12 +1,18 @@
-
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class TextFieldWidget extends StatelessWidget {
-
   String hintText;
-  TextFieldWidget({required this.hintText,});
+  int? maxLines;
+  bool? isNumeric;
+
+  TextFieldWidget({
+    required this.hintText,
+    this.maxLines,
+    this.isNumeric = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +33,17 @@ class TextFieldWidget extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            maxLines: maxLines,
             style: const TextStyle(
               fontSize: 14.0,
             ),
             decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
               hintText: hintText,
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                 fontSize: 14.0,
+                color: kBrandPrimaryColor.withOpacity(0.5),
               ),
               filled: true,
               fillColor: Colors.white,
