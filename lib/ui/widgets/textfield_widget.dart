@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
@@ -37,7 +38,13 @@ class TextFieldWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 14.0,
             ),
-            keyboardType: isNumeric! ? TextInputType.number : TextInputType.text,
+            keyboardType:
+                isNumeric! ? TextInputType.number : TextInputType.text,
+            inputFormatters: isNumeric!
+                ? [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                  ]
+                : [],
             decoration: InputDecoration(
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
@@ -65,6 +72,12 @@ class TextFieldWidget extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
             ),
+            validator: (String? value){
+              if(value!.isEmpty){
+                return "Campo requerido";
+              }
+              return null;
+            },
           ),
         )
       ],
