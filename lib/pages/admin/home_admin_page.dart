@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/background_widget.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_menu_widget.dart';
@@ -33,6 +34,7 @@ class HomeAdminPage extends StatelessWidget {
                     divider20,
                     Container(
                       width: double.infinity,
+                      padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14.0),
                         color: Colors.white,
@@ -45,14 +47,28 @@ class HomeAdminPage extends StatelessWidget {
                         ],
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextNormal(
                             text: "23 de Abril del 2022",
+                            color: kBrandPrimaryColor.withOpacity(0.6),
+                          ),
+                          Text(
+                            "#34",
+                            style: TextStyle(
+                              color: kBrandPrimaryColor,
+                              fontSize: 34.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextNormal(
+                            text: "Cantidad de ordenes en el día",
+                            color: kBrandPrimaryColor.withOpacity(0.8),
                           ),
                         ],
                       ),
                     ),
-                    divider30,
+                    divider20,
                     GridView.count(
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
