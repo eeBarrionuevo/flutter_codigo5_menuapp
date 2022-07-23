@@ -5,6 +5,7 @@ import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_admin_producto_widget.dart';
+import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ProductPage extends StatelessWidget {
@@ -14,40 +15,39 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kBrandPrimaryColor,
-        title: Text("Productos"),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.search,
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
-        decoration: BoxDecoration(
-          color: kBrandPrimaryColor,
-          borderRadius: BorderRadius.circular(10.0),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0),
+        child: MyAppBarWidget(
+          text: "Productos",
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: const [
-            Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            dividerWidth6,
-            Text(
-              "Agregar",
-              style: TextStyle(
-                fontSize: 15.0,
+      ),
+      floatingActionButton: InkWell(
+        onTap: (){
+          
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+          decoration: BoxDecoration(
+            color: kBrandPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(
+                Icons.add,
                 color: Colors.white,
               ),
-            )
-          ],
+              dividerWidth6,
+              Text(
+                "Agregar",
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
         ),
       ),
       body: StreamBuilder(
