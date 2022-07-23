@@ -27,10 +27,26 @@ class ProductPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+        decoration: BoxDecoration(
+          color: kBrandPrimaryColor,
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.add,),
+          children: const [
+            Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            dividerWidth6,
+            Text(
+              "Agregar",
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.white,
+              ),
+            )
           ],
         ),
       ),
