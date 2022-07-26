@@ -33,20 +33,18 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   List<String> _ingredients = [];
   XFile? _image;
-  
-  
+
   getImageGallery() async {
     ImagePicker _imagePicker = ImagePicker();
     _image = await _imagePicker.pickImage(source: ImageSource.gallery);
-    setState((){});
+    setState(() {});
   }
 
   getImageCamera() async {
     ImagePicker _imagePicker = ImagePicker();
     _image = await _imagePicker.pickImage(source: ImageSource.camera);
-    setState((){});
+    setState(() {});
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +72,43 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 maxLines: 4,
                 controller: _descriptionController,
               ),
+              Row(
+                children: [
+                  TextNormal(text: " Categoría:"),
+                ],
+              ),
+              divider6,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2,),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 12.0,
+                      offset: const Offset(4, 4),
+                    )
+                  ],
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                    value: "1",
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem(
+                        value: "1",
+                        child: Text(
+                          "Hola",
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {},
+                  ),
+                ),
+              ),
+              divider20,
+              divider6,
               Row(
                 children: [
                   Expanded(
@@ -301,7 +336,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                   ],
                 ),
-
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(14.0),
                   // child: Image.network(
@@ -313,7 +347,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   //   'assets/images/placeholder.png',
                   // ),
                   child: Image(
-                    image: _image != null ? FileImage(File(_image!.path)) : AssetImage('assets/images/placeholder.png') as ImageProvider,
+                    image: _image != null
+                        ? FileImage(File(_image!.path))
+                        : AssetImage('assets/images/placeholder.png')
+                            as ImageProvider,
                     fit: BoxFit.cover,
                   ),
                 ),
