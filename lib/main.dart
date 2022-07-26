@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(),
       ),
-      // home: HomeCustomerPage(),
+      home: HomeCustomerPage(),
       // home: ProductDetailPage(),
-      home: HomeAdminPage(),
+      //home: HomeAdminPage(),
     );
   }
 }

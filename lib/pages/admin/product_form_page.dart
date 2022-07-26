@@ -73,16 +73,16 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   saveProduct() {
     ProductModel productModel = ProductModel(
-      image: "",
-      categoryId: "a1",
-      rate: 1,
-      price: 23.2,
-      name: "a2",
-      discount: 1,
-      ingredients: ["a3"],
-      description: "a4",
-      time: 2,
-      serving: 1,
+      image: "https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      categoryId: categoryValue,
+      rate: double.parse(_rateController.text),
+      price: double.parse(_priceController.text),
+      name: _nameController.text,
+      discount: int.parse(_discountController.text),
+      ingredients: _ingredients,
+      description: _descriptionController.text,
+      time: int.parse(_timeController.text),
+      serving: int.parse(_servingController.text),
     );
     _productService.addProduct(productModel);
   }
