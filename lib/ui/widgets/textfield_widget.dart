@@ -20,7 +20,7 @@ class TextFieldWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextNormal(text: " $hintText"),
+        TextNormal(text: " $hintText:"),
         divider6,
         Container(
           margin: const EdgeInsets.only(bottom: 22.0),

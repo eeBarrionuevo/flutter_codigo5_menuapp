@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
+import 'package:menuapp/ui/widgets/text_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_widget.dart';
 
 class ProductFormPage extends StatelessWidget {
@@ -72,6 +74,49 @@ class ProductFormPage extends StatelessWidget {
                     child: SizedBox(),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 30.0,
+                child: Divider(
+                  indent: 20.0,
+                  endIndent: 20.0,
+                ),
+              ),
+
+              TextNormal(text: "Ingredientes",),
+              divider12,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFieldWidget(
+                      hintText: "Ingrediente",
+                    ),
+                  ),
+                  dividerWidth10,
+                  InkWell(
+                    onTap: (){
+
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: kBrandSecondaryColor,
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Icon(Icons.add, color: Colors.white,),
+                    ),
+                  ),
+                ],
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (context, index){
+                  return ListTile(
+                    title: TextNormal(text: "Ingrediente $index"),
+                  );
+                },
               ),
             ],
           ),
