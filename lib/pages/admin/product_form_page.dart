@@ -67,6 +67,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() {});
   }
 
+  saveProduct(){
+    //Construir el modelo a agregar
+
+    //Utilizar el servicio
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;

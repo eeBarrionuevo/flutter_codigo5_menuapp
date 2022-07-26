@@ -35,6 +35,10 @@ class FirestoreService{
     return categories;
   }
 
+  addProduct(){
+    //Implementar el método
+  }
+
 
 
 }
