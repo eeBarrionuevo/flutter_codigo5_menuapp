@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
@@ -82,8 +83,9 @@ class ProductFormPage extends StatelessWidget {
                   endIndent: 20.0,
                 ),
               ),
-
-              TextNormal(text: "Ingredientes",),
+              TextNormal(
+                text: "Ingredientes",
+              ),
               divider12,
               Row(
                 children: [
@@ -94,9 +96,7 @@ class ProductFormPage extends StatelessWidget {
                   ),
                   dividerWidth10,
                   InkWell(
-                    onTap: (){
-
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 50,
                       width: 50,
@@ -104,20 +104,47 @@ class ProductFormPage extends StatelessWidget {
                         color: kBrandSecondaryColor,
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      child: Icon(Icons.add, color: Colors.white,),
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index){
-                  return ListTile(
-                    title: TextNormal(text: "Ingrediente $index"),
-                  );
-                },
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 12.0,
+                      offset: const Offset(4, 4),
+                    )
+                  ],
+                ),
+                child: ListView.builder(
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: TextNormal(text: "Ingrediente $index"),
+                      trailing: IconButton(
+                        icon: SvgPicture.asset(
+                          'assets/icons/trash.svg',
+                          height: 18.0,
+                          color: kBrandPrimaryColor.withOpacity(0.8),
+                        ),
+                        onPressed: () {},
+                      ),
+                    );
+                  },
+                ),
               ),
+              divider40,
+              divider40,
             ],
           ),
         ),
