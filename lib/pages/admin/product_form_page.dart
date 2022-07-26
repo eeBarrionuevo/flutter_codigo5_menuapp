@@ -220,12 +220,20 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       child: ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
+                          primary: Color(0xfff72585),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0)
+                              borderRadius: BorderRadius.circular(12.0)),
+                        ),
+                        icon: SvgPicture.asset(
+                          'assets/icons/gallery.svg',
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          "Galería",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        icon: Icon(Icons.add),
-                        label: Text("Galería"),
                       ),
                     ),
                   ),
@@ -236,12 +244,21 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       child: ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
+                          primary: Color(0xff4361ee),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0)
+                            borderRadius: BorderRadius.circular(12.0),
                           ),
                         ),
-                        icon: Icon(Icons.add),
-                        label: Text("Cámara"),
+                        icon: SvgPicture.asset(
+                          'assets/icons/camera.svg',
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          "Cámara",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
                   ),
