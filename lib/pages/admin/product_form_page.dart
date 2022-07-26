@@ -386,6 +386,31 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       ),
                     ),
                   ),
+                  divider30,
+                  SizedBox(
+                    height: 48.0,
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        getImageGallery();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: kBrandPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
+                      ),
+                      icon: SvgPicture.asset(
+                        'assets/icons/save.svg',
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        "Guardar",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
                   divider40,
                   divider40,
                 ],
