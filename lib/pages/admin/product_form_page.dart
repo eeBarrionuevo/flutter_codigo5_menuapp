@@ -12,7 +12,6 @@ class ProductFormPage extends StatefulWidget {
 }
 
 class _ProductFormPageState extends State<ProductFormPage> {
-
   final TextEditingController _ingredientController = TextEditingController();
 
   final TextEditingController _nameController = TextEditingController();
@@ -131,7 +130,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     onTap: () {
                       _ingredients.add(_ingredientController.text);
                       _ingredientController.clear();
-                      setState((){});
+                      setState(() {});
                     },
                     child: Container(
                       height: 50,
@@ -148,37 +147,55 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   ),
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 12.0,
-                      offset: const Offset(4, 4),
-                    )
-                  ],
-                ),
-                child: ListView.builder(
-                  physics: const ScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: _ingredients.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: TextNormal(text: _ingredients[index]),
-                      trailing: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/icons/trash.svg',
-                          height: 18.0,
-                          color: kBrandPrimaryColor.withOpacity(0.8),
-                        ),
-                        onPressed: () {},
+              _ingredients.isNotEmpty
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(14.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 12.0,
+                            offset: const Offset(4, 4),
+                          )
+                        ],
                       ),
-                    );
-                  },
-                ),
-              ),
+                      child: ListView.builder(
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _ingredients.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: TextNormal(text: _ingredients[index]),
+                            trailing: IconButton(
+                              icon: SvgPicture.asset(
+                                'assets/icons/trash.svg',
+                                height: 18.0,
+                                color: kBrandPrimaryColor.withOpacity(0.8),
+                              ),
+                              onPressed: () {
+                                _ingredients.removeAt(index);
+                                setState(() {});
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : Container(
+                      margin: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/box.png',
+                            height: 90.0,
+                            color: kBrandPrimaryColor.withOpacity(0.8),
+                          ),
+                          divider6,
+                          TextNormal(text: "Aún no hay ingredientes",),
+                        ],
+                      )
+                    ),
               divider40,
               divider40,
             ],
