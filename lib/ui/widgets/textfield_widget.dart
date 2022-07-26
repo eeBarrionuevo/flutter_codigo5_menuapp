@@ -8,11 +8,13 @@ class TextFieldWidget extends StatelessWidget {
   String hintText;
   int? maxLines;
   bool? isNumeric;
+  TextEditingController controller;
 
   TextFieldWidget({
     required this.hintText,
     this.maxLines,
     this.isNumeric = false,
+    required this.controller,
   });
 
   @override
@@ -34,6 +36,7 @@ class TextFieldWidget extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            controller: controller,
             maxLines: maxLines,
             style: const TextStyle(
               fontSize: 14.0,

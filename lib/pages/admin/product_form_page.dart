@@ -6,7 +6,31 @@ import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_widget.dart';
 
-class ProductFormPage extends StatelessWidget {
+class ProductFormPage extends StatefulWidget {
+  @override
+  State<ProductFormPage> createState() => _ProductFormPageState();
+}
+
+class _ProductFormPageState extends State<ProductFormPage> {
+
+  final TextEditingController _ingredientController = TextEditingController();
+
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _descriptionController = TextEditingController();
+
+  final TextEditingController _priceController = TextEditingController();
+
+  final TextEditingController _discountController = TextEditingController();
+
+  final TextEditingController _timeController = TextEditingController();
+
+  final TextEditingController _servingController = TextEditingController();
+
+  final TextEditingController _rateController = TextEditingController();
+
+  List<String> _ingredients = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +47,12 @@ class ProductFormPage extends StatelessWidget {
             children: [
               TextFieldWidget(
                 hintText: "Nombre del producto",
+                controller: _nameController,
               ),
               TextFieldWidget(
                 hintText: "Descripción",
                 maxLines: 4,
+                controller: _descriptionController,
               ),
               Row(
                 children: [
@@ -34,6 +60,7 @@ class ProductFormPage extends StatelessWidget {
                     child: TextFieldWidget(
                       hintText: "Precio",
                       isNumeric: true,
+                      controller: _priceController,
                     ),
                   ),
                   dividerWidth10,
@@ -41,6 +68,7 @@ class ProductFormPage extends StatelessWidget {
                     child: TextFieldWidget(
                       hintText: "Descuento",
                       isNumeric: true,
+                      controller: _discountController,
                     ),
                   ),
                 ],
@@ -51,6 +79,7 @@ class ProductFormPage extends StatelessWidget {
                     child: TextFieldWidget(
                       hintText: "Tiempo",
                       isNumeric: true,
+                      controller: _timeController,
                     ),
                   ),
                   dividerWidth10,
@@ -58,6 +87,7 @@ class ProductFormPage extends StatelessWidget {
                     child: TextFieldWidget(
                       hintText: "Porciones",
                       isNumeric: true,
+                      controller: _servingController,
                     ),
                   ),
                 ],
@@ -68,6 +98,7 @@ class ProductFormPage extends StatelessWidget {
                     child: TextFieldWidget(
                       hintText: "Calificación",
                       isNumeric: true,
+                      controller: _rateController,
                     ),
                   ),
                   dividerWidth10,
@@ -92,11 +123,16 @@ class ProductFormPage extends StatelessWidget {
                   Expanded(
                     child: TextFieldWidget(
                       hintText: "Ingrediente",
+                      controller: _ingredientController,
                     ),
                   ),
                   dividerWidth10,
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      _ingredients.add(_ingredientController.text);
+                      _ingredientController.clear();
+                      setState((){});
+                    },
                     child: Container(
                       height: 50,
                       width: 50,
@@ -127,10 +163,10 @@ class ProductFormPage extends StatelessWidget {
                 child: ListView.builder(
                   physics: const ScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: _ingredients.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: TextNormal(text: "Ingrediente $index"),
+                      title: TextNormal(text: _ingredients[index]),
                       trailing: IconButton(
                         icon: SvgPicture.asset(
                           'assets/icons/trash.svg',
