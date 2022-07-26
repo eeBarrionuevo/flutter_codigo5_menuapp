@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:menuapp/models/category_model.dart';
+import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
@@ -42,6 +43,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final FirestoreService _categoryService =
       FirestoreService(collection: "categories");
 
+  final FirestoreService _productService =
+      FirestoreService(collection: "products");
+
   @override
   initState() {
     super.initState();
@@ -67,13 +71,21 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() {});
   }
 
-  saveProduct(){
-    //Construir el modelo a agregar
-
-    //Utilizar el servicio
+  saveProduct() {
+    ProductModel productModel = ProductModel(
+      image: "",
+      categoryId: "a1",
+      rate: 1,
+      price: 23.2,
+      name: "a2",
+      discount: 1,
+      ingredients: ["a3"],
+      description: "a4",
+      time: 2,
+      serving: 1,
+    );
+    _productService.addProduct(productModel);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +153,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             .toList(),
                         onChanged: (String? value) {
                           categoryValue = value!;
-                          setState((){});
+                          setState(() {});
                         },
                       ),
                     ),
@@ -400,7 +412,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     width: double.infinity,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        getImageGallery();
+                        saveProduct();
                       },
                       style: ElevatedButton.styleFrom(
                         primary: kBrandPrimaryColor,
@@ -425,19 +437,21 @@ class _ProductFormPageState extends State<ProductFormPage> {
               ),
             ),
           ),
-          isLoading ? Container(
-            color: Colors.white.withOpacity(0.8),
-            child: Center(
-              child: SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(
-                  color: kBrandSecondaryColor,
-                  strokeWidth: 2.0,
-                ),
-              ),
-            ),
-          ) : Container(),
+          isLoading
+              ? Container(
+                  color: Colors.white.withOpacity(0.8),
+                  child: Center(
+                    child: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        color: kBrandSecondaryColor,
+                        strokeWidth: 2.0,
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

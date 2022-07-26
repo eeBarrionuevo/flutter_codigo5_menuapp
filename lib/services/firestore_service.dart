@@ -35,8 +35,11 @@ class FirestoreService{
     return categories;
   }
 
-  addProduct(){
-    //Implementar el método
+  addProduct(ProductModel productModel) async {
+    DocumentReference documentReference = await _collectionReference.add(
+      productModel.toJson(),
+    );
+    print(documentReference.id);
   }
 
 
