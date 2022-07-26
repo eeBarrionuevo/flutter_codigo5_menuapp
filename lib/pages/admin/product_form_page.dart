@@ -11,6 +11,7 @@ import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_widget.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class ProductFormPage extends StatefulWidget {
   @override
@@ -46,6 +47,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final FirestoreService _productService =
       FirestoreService(collection: "products");
 
+  final firebase_storage.FirebaseStorage _storage = firebase_storage.FirebaseStorage.instance;
+
+
   @override
   initState() {
     super.initState();
@@ -69,6 +73,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
     ImagePicker _imagePicker = ImagePicker();
     _image = await _imagePicker.pickImage(source: ImageSource.camera);
     setState(() {});
+  }
+
+  uploadImageStorage(){
+    firebase_storage.Reference _reference = _storage.ref().child("products");
+    print(_reference);
   }
 
   saveProduct() {
@@ -412,7 +421,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     width: double.infinity,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        saveProduct();
+                        // saveProduct();
+                        uploadImageStorage();
                       },
                       style: ElevatedButton.styleFrom(
                         primary: kBrandPrimaryColor,
