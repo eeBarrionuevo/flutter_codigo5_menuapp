@@ -32,6 +32,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
@@ -192,10 +195,49 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             color: kBrandPrimaryColor.withOpacity(0.8),
                           ),
                           divider6,
-                          TextNormal(text: "Aún no hay ingredientes",),
+                          TextNormal(
+                            text: "Aún no hay ingredientes",
+                          ),
                         ],
-                      )
+                      )),
+              divider20,
+              const SizedBox(
+                height: 30.0,
+                child: Divider(
+                  indent: 20.0,
+                  endIndent: 20.0,
+                ),
+              ),
+              TextNormal(
+                text: "Imagen del producto",
+              ),
+              divider20,
+              Container(
+                height: height * 0.32,
+                width: width * 0.85,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(14.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.06),
+                      blurRadius: 12.0,
+                      offset: const Offset(4, 4),
                     ),
+                  ],
+                ),
+                // child: Image.asset(
+                //   fit: BoxFit.cover,
+                //   'assets/images/placeholder.png',
+                // ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14.0),
+                  child: Image.network(
+                    "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               divider40,
               divider40,
             ],
