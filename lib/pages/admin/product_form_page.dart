@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
@@ -29,6 +32,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final TextEditingController _rateController = TextEditingController();
 
   List<String> _ingredients = [];
+  XFile? _image;
+  
+  
+  getImageGallery() async {
+    ImagePicker _imagePicker = ImagePicker();
+    _image = await _imagePicker.pickImage(source: ImageSource.gallery);
+    setState((){});
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +230,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     child: SizedBox(
                       height: 40.0,
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          getImageGallery();
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xfff72585),
                           shape: RoundedRectangleBorder(
@@ -279,14 +293,19 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                   ],
                 ),
-                // child: Image.asset(
-                //   fit: BoxFit.cover,
-                //   'assets/images/placeholder.png',
-                // ),
+
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(14.0),
-                  child: Image.network(
-                    "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                  // child: Image.network(
+                  //   "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                  //   fit: BoxFit.cover,
+                  // ),
+                  // child: Image.asset(
+                  //   fit: BoxFit.cover,
+                  //   'assets/images/placeholder.png',
+                  // ),
+                  child: Image(
+                    image: _image != null ? FileImage(File(_image!.path)) : AssetImage('assets/images/placeholder.png') as ImageProvider,
                     fit: BoxFit.cover,
                   ),
                 ),
