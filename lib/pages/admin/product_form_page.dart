@@ -40,6 +40,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
     _image = await _imagePicker.pickImage(source: ImageSource.gallery);
     setState((){});
   }
+
+  getImageCamera() async {
+    ImagePicker _imagePicker = ImagePicker();
+    _image = await _imagePicker.pickImage(source: ImageSource.camera);
+    setState((){});
+  }
   
 
   @override
@@ -256,7 +262,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     child: SizedBox(
                       height: 40.0,
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          getImageCamera();
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xff4361ee),
                           shape: RoundedRectangleBorder(
