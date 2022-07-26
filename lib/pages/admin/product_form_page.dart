@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:menuapp/models/category_model.dart';
+import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
@@ -32,7 +34,24 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final TextEditingController _rateController = TextEditingController();
 
   List<String> _ingredients = [];
+  List<CategoryModel> _categories = [];
+  String categoryValue = "";
   XFile? _image;
+
+  final FirestoreService _categoryService =
+      FirestoreService(collection: "categories");
+
+  @override
+  initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    _categories = await _categoryService.getCategories();
+    categoryValue = _categories.first.id!;
+    setState(() {});
+  }
 
   getImageGallery() async {
     ImagePicker _imagePicker = ImagePicker();
@@ -79,7 +98,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
               ),
               divider6,
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14.0,
+                  vertical: 2,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(14.0),
@@ -93,17 +115,22 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(
-                    value: "1",
+                    value: categoryValue,
                     isExpanded: true,
-                    items: [
-                      DropdownMenuItem(
-                        value: "1",
-                        child: Text(
-                          "Hola",
-                        ),
-                      ),
-                    ],
-                    onChanged: (value) {},
+                    items: _categories
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e.id,
+                            child: TextNormal(
+                              text: e.category,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (String? value) {
+                      categoryValue = value!;
+                      setState((){});
+                    },
                   ),
                 ),
               ),
