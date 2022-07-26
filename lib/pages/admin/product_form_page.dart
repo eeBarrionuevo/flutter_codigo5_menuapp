@@ -212,6 +212,42 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 text: "Imagen del producto",
               ),
               divider20,
+              Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 40.0,
+                      child: ElevatedButton.icon(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)
+                          ),
+                        ),
+                        icon: Icon(Icons.add),
+                        label: Text("Galería"),
+                      ),
+                    ),
+                  ),
+                  dividerWidth10,
+                  Expanded(
+                    child: SizedBox(
+                      height: 40.0,
+                      child: ElevatedButton.icon(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0)
+                          ),
+                        ),
+                        icon: Icon(Icons.add),
+                        label: Text("Cámara"),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              divider20,
               Container(
                 height: height * 0.32,
                 width: width * 0.85,
