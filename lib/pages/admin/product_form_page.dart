@@ -109,51 +109,118 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   saveProduct() async {
     if (_formKey.currentState!.validate()) {
-      if (_image != null) {
-        isLoading = true;
-        setState(() {});
+
+      ProductModel productModel = ProductModel(
+        image: "",
+        categoryId: categoryValue,
+        rate: double.parse(_rateController.text),
+        price: double.parse(_priceController.text),
+        name: _nameController.text,
+        discount: int.parse(_discountController.text),
+        ingredients: _ingredients,
+        description: _descriptionController.text,
+        time: int.parse(_timeController.text),
+        serving: int.parse(_servingController.text),
+      );
+
+      if(_image != null){
         String imageUrl = await uploadImageStorage();
-        ProductModel productModel = ProductModel(
-          image: imageUrl,
-          categoryId: categoryValue,
-          rate: double.parse(_rateController.text),
-          price: double.parse(_priceController.text),
-          name: _nameController.text,
-          discount: int.parse(_discountController.text),
-          ingredients: _ingredients,
-          description: _descriptionController.text,
-          time: int.parse(_timeController.text),
-          serving: int.parse(_servingController.text),
-        );
+        productModel.image = imageUrl;
+      }else{
+        if(widget.productModel != null){
+          productModel.image = widget.productModel!.image;
+        }else{
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.redAccent,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0)),
+              content: Row(
+                children: [
+                  Icon(
+                    Icons.image_not_supported,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    "Por favor selecciona una imagen.",
+                  ),
+                ],
+              ),
+            ),
+          );
+          return;
+        }
+      }
+
+      if(widget.productModel == null){
+        //Agregar nuevo
         _productService.addProduct(productModel).then((value) {
           isLoading = false;
           setState(() {});
           Navigator.pop(context);
         });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.redAccent,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0)),
-            content: Row(
-              children: [
-                Icon(
-                  Icons.image_not_supported,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(
-                  "Por favor selecciona una imagen.",
-                ),
-              ],
-            ),
-          ),
-        );
+
+      }else{
+        //Actualizar
+        productModel.id = widget.productModel!.id;
+        _productService.updateProduct(productModel).then((value) {
+          isLoading = false;
+          setState(() {});
+          Navigator.pop(context);
+        });
+
       }
+
+
+      // if (_image != null) {
+      //   isLoading = true;
+      //   setState(() {});
+      //   String imageUrl = await uploadImageStorage();
+      //   ProductModel productModel = ProductModel(
+      //     image: imageUrl,
+      //     categoryId: categoryValue,
+      //     rate: double.parse(_rateController.text),
+      //     price: double.parse(_priceController.text),
+      //     name: _nameController.text,
+      //     discount: int.parse(_discountController.text),
+      //     ingredients: _ingredients,
+      //     description: _descriptionController.text,
+      //     time: int.parse(_timeController.text),
+      //     serving: int.parse(_servingController.text),
+      //   );
+      //   _productService.addProduct(productModel).then((value) {
+      //     isLoading = false;
+      //     setState(() {});
+      //     Navigator.pop(context);
+      //   });
+      // } else {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       backgroundColor: Colors.redAccent,
+      //       behavior: SnackBarBehavior.floating,
+      //       shape: RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.circular(12.0)),
+      //       content: Row(
+      //         children: [
+      //           Icon(
+      //             Icons.image_not_supported,
+      //             color: Colors.white,
+      //           ),
+      //           SizedBox(
+      //             width: 10.0,
+      //           ),
+      //           Text(
+      //             "Por favor selecciona una imagen.",
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   );
+      // }
     }
   }
 

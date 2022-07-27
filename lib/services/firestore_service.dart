@@ -42,6 +42,11 @@ class FirestoreService{
     return documentReference.id;
   }
 
+  Future<int> updateProduct(ProductModel productModel) async {
+    await _collectionReference.doc(productModel.id).update(productModel.toJson());
+    return 1;
+  }
+
 
 
 }
