@@ -50,7 +50,7 @@ class ItemAdminProductWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Text(
-                        "Plato de fondo",
+                        productModel.categoryDescription!,
                         style: TextStyle(fontSize: 12.0),
                       ),
                     ),

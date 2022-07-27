@@ -33,7 +33,7 @@ class _ProductPageState extends State<ProductPage> {
 
   getData() async{
     categories = await _categoryReference.getCategories();
-    print(categories);
+    setState((){});
   }
 
   @override
@@ -83,12 +83,19 @@ class _ProductPageState extends State<ProductPage> {
               ProductModel product =
                   ProductModel.fromJson(e.data() as Map<String, dynamic>);
               product.id = e.id;
+
+              product.categoryDescription = categories.firstWhere((element) => element.id == product.categoryId).category;
+
               return product;
             }).toList();
+
 
             return ListView.builder(
               itemCount: products.length,
               itemBuilder: (context, index) {
+
+
+
                 return ItemAdminProductWidget(
                   productModel: products[index],
                 );
