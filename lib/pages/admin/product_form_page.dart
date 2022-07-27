@@ -89,6 +89,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   saveProduct() async {
     if (_formKey.currentState!.validate()) {
       if (_image != null) {
+        isLoading = true;
+        setState((){});
         String imageUrl = await uploadImageStorage();
         ProductModel productModel = ProductModel(
           image: imageUrl,
@@ -102,7 +104,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
           time: int.parse(_timeController.text),
           serving: int.parse(_servingController.text),
         );
-        _productService.addProduct(productModel);
+        _productService.addProduct(productModel).then((value){
+          isLoading = false;
+          setState((){});
+          Navigator.pop(context);
+        });
 
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

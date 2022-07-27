@@ -35,11 +35,11 @@ class FirestoreService{
     return categories;
   }
 
-  addProduct(ProductModel productModel) async {
+  Future<String> addProduct(ProductModel productModel) async {
     DocumentReference documentReference = await _collectionReference.add(
       productModel.toJson(),
     );
-    print(documentReference.id);
+    return documentReference.id;
   }
 
 
