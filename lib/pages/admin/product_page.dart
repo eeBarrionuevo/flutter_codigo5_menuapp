@@ -1,17 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/pages/admin/product_form_page.dart';
+import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_admin_producto_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+
   final CollectionReference _productReference =
       FirebaseFirestore.instance.collection('products');
+
+  final FirestoreService _categoryReference = FirestoreService(collection: "categories");
+  List<CategoryModel> categories = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() async{
+    categories = await _categoryReference.getCategories();
+    print(categories);
+  }
 
   @override
   Widget build(BuildContext context) {
