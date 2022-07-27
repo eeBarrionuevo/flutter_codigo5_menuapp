@@ -103,6 +103,7 @@ class ItemAdminProductWidget extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => ProductFormPage(
                         categories: categories,
+                        productModel: productModel,
                       ),
                     ),
                   );

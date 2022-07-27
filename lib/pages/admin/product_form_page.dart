@@ -15,7 +15,12 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class ProductFormPage extends StatefulWidget {
   List<CategoryModel> categories;
-  ProductFormPage({required this.categories});
+  ProductModel? productModel;
+  ProductFormPage({
+    required this.categories,
+    this.productModel,
+  });
+
   @override
   State<ProductFormPage> createState() => _ProductFormPageState();
 }
@@ -92,7 +97,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     if (_formKey.currentState!.validate()) {
       if (_image != null) {
         isLoading = true;
-        setState((){});
+        setState(() {});
         String imageUrl = await uploadImageStorage();
         ProductModel productModel = ProductModel(
           image: imageUrl,
@@ -106,23 +111,24 @@ class _ProductFormPageState extends State<ProductFormPage> {
           time: int.parse(_timeController.text),
           serving: int.parse(_servingController.text),
         );
-        _productService.addProduct(productModel).then((value){
+        _productService.addProduct(productModel).then((value) {
           isLoading = false;
-          setState((){});
+          setState(() {});
           Navigator.pop(context);
         });
-
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.redAccent,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0)
-            ),
+                borderRadius: BorderRadius.circular(12.0)),
             content: Row(
               children: [
-                Icon(Icons.image_not_supported, color: Colors.white,),
+                Icon(
+                  Icons.image_not_supported,
+                  color: Colors.white,
+                ),
                 SizedBox(
                   width: 10.0,
                 ),

@@ -52,6 +52,7 @@ class _ProductPageState extends State<ProductPage> {
             MaterialPageRoute(
               builder: (context) => ProductFormPage(
                 categories: categories,
+
               ),
             ),
           );
