@@ -9,7 +9,7 @@ class TextFieldWidget extends StatelessWidget {
   int? maxLines;
   bool? isNumeric;
   TextEditingController controller;
-  bool? validate = true;
+  bool? validate;
 
   TextFieldWidget({
     required this.hintText,
@@ -79,7 +79,7 @@ class TextFieldWidget extends StatelessWidget {
             ),
             validator: (String? value){
 
-              if(!validate!) return null;
+              if(validate != null) return null;
 
               if(value!.isEmpty){
                 return "Campo requerido";

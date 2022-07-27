@@ -86,12 +86,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
     return url;
   }
 
-  saveProduct() {
-    if (true) {
+  saveProduct() async {
+    if (_formKey.currentState!.validate()) {
       if (_image != null) {
+        String imageUrl = await uploadImageStorage();
         ProductModel productModel = ProductModel(
-          image:
-              "https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          image: imageUrl,
           categoryId: categoryValue,
           rate: double.parse(_rateController.text),
           price: double.parse(_priceController.text),
@@ -103,6 +103,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
           serving: int.parse(_servingController.text),
         );
         _productService.addProduct(productModel);
+
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
