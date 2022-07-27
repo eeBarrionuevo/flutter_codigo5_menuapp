@@ -77,6 +77,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   uploadImageStorage(){
     firebase_storage.Reference _reference = _storage.ref().child("products");
+
+    _reference.child("imagenDesdeFlutter.jpg").putFile(File(_image!.path));
+
     print(_reference);
   }
 
