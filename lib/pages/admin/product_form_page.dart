@@ -248,6 +248,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           child: TextFieldWidget(
                             hintText: "Ingrediente",
                             controller: _ingredientController,
+                            validate: false,
                           ),
                         ),
                         dividerWidth10,
