@@ -80,6 +80,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
       _timeController.text = widget.productModel!.time.toString();
       _servingController.text = widget.productModel!.serving.toString();
       _rateController.text = widget.productModel!.rate.toStringAsFixed(1);
+      _ingredients = widget.productModel!.ingredients;
     }
 
 
