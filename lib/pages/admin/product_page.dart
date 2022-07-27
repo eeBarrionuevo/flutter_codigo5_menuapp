@@ -17,11 +17,11 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-
   final CollectionReference _productReference =
       FirebaseFirestore.instance.collection('products');
 
-  final FirestoreService _categoryReference = FirestoreService(collection: "categories");
+  final FirestoreService _categoryReference =
+      FirestoreService(collection: "categories");
   List<CategoryModel> categories = [];
 
   @override
@@ -31,9 +31,9 @@ class _ProductPageState extends State<ProductPage> {
     getData();
   }
 
-  getData() async{
+  getData() async {
     categories = await _categoryReference.getCategories();
-    setState((){});
+    setState(() {});
   }
 
   @override
@@ -46,8 +46,15 @@ class _ProductPageState extends State<ProductPage> {
         ),
       ),
       floatingActionButton: InkWell(
-        onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductFormPage()));
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductFormPage(
+                categories: categories,
+              ),
+            ),
+          );
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
@@ -84,18 +91,16 @@ class _ProductPageState extends State<ProductPage> {
                   ProductModel.fromJson(e.data() as Map<String, dynamic>);
               product.id = e.id;
 
-              product.categoryDescription = categories.firstWhere((element) => element.id == product.categoryId).category;
+              product.categoryDescription = categories
+                  .firstWhere((element) => element.id == product.categoryId)
+                  .category;
 
               return product;
             }).toList();
 
-
             return ListView.builder(
               itemCount: products.length,
               itemBuilder: (context, index) {
-
-
-
                 return ItemAdminProductWidget(
                   productModel: products[index],
                 );

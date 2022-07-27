@@ -14,6 +14,8 @@ import 'package:menuapp/ui/widgets/textfield_widget.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class ProductFormPage extends StatefulWidget {
+  List<CategoryModel> categories;
+  ProductFormPage({required this.categories});
   @override
   State<ProductFormPage> createState() => _ProductFormPageState();
 }
@@ -59,8 +61,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   }
 
   getData() async {
-    _categories = await _categoryService.getCategories();
-    categoryValue = _categories.first.id!;
+    // _categories = await _categoryService.getCategories();
+    categoryValue = widget.categories.first.id!;
     isLoading = false;
     setState(() {});
   }
@@ -191,7 +193,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         child: DropdownButton(
                           value: categoryValue,
                           isExpanded: true,
-                          items: _categories
+                          items: widget.categories
                               .map(
                                 (e) => DropdownMenuItem(
                                   value: e.id,
