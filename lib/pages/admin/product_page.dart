@@ -103,6 +103,7 @@ class _ProductPageState extends State<ProductPage> {
               itemBuilder: (context, index) {
                 return ItemAdminProductWidget(
                   productModel: products[index],
+                  categories: categories,
                 );
               },
             );

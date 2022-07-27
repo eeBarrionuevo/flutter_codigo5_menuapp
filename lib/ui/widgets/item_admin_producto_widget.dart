@@ -1,15 +1,20 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
+import 'package:menuapp/pages/admin/product_form_page.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemAdminProductWidget extends StatelessWidget {
-
   ProductModel productModel;
-  ItemAdminProductWidget({required this.productModel,});
+  List<CategoryModel> categories;
+
+  ItemAdminProductWidget({
+    required this.productModel,
+    required this.categories,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,10 @@ class ItemAdminProductWidget extends StatelessWidget {
                     ),
                     divider6,
                     Row(
-                      children: [Text("S/ ${productModel.price.toStringAsFixed(2)}   |   ${productModel.time} min.")],
+                      children: [
+                        Text(
+                            "S/ ${productModel.price.toStringAsFixed(2)}   |   ${productModel.time} min.")
+                      ],
                     ),
                   ],
                 ),
@@ -88,8 +96,17 @@ class ItemAdminProductWidget extends StatelessWidget {
                 Icons.more_vert,
                 color: kBrandPrimaryColor.withOpacity(0.8),
               ),
-              onSelected: (value){
-                print(value);
+              onSelected: (value) {
+                if (value == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductFormPage(
+                        categories: categories,
+                      ),
+                    ),
+                  );
+                }
               },
               itemBuilder: (context) {
                 return [
@@ -99,7 +116,9 @@ class ItemAdminProductWidget extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/edit.svg'),
                         dividerWidth6,
-                        TextNormal(text: "Actualizar",),
+                        TextNormal(
+                          text: "Actualizar",
+                        ),
                       ],
                     ),
                   ),
@@ -109,7 +128,9 @@ class ItemAdminProductWidget extends StatelessWidget {
                       children: [
                         SvgPicture.asset('assets/icons/trash.svg'),
                         dividerWidth6,
-                        TextNormal(text: "Eliminar",),
+                        TextNormal(
+                          text: "Eliminar",
+                        ),
                       ],
                     ),
                   ),
