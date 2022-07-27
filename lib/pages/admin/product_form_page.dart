@@ -14,8 +14,10 @@ import 'package:menuapp/ui/widgets/textfield_widget.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class ProductFormPage extends StatefulWidget {
+
   List<CategoryModel> categories;
   ProductModel? productModel;
+
   ProductFormPage({
     required this.categories,
     this.productModel,
@@ -26,6 +28,7 @@ class ProductFormPage extends StatefulWidget {
 }
 
 class _ProductFormPageState extends State<ProductFormPage> {
+
   final TextEditingController _ingredientController = TextEditingController();
 
   final TextEditingController _nameController = TextEditingController();
@@ -65,9 +68,21 @@ class _ProductFormPageState extends State<ProductFormPage> {
     getData();
   }
 
-  getData() async {
+  getData(){
     // _categories = await _categoryService.getCategories();
     categoryValue = widget.categories.first.id!;
+
+    if(widget.productModel != null){
+      _nameController.text = widget.productModel!.name;
+      _descriptionController.text = widget.productModel!.description;
+      _priceController.text = widget.productModel!.price.toStringAsFixed(2);
+      _discountController.text = widget.productModel!.discount.toString();
+      _timeController.text = widget.productModel!.time.toString();
+      _servingController.text = widget.productModel!.serving.toString();
+      _rateController.text = widget.productModel!.rate.toStringAsFixed(1);
+    }
+
+
     isLoading = false;
     setState(() {});
   }
