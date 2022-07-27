@@ -172,7 +172,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
           setState(() {});
           Navigator.pop(context);
         });
-
       }
 
 
