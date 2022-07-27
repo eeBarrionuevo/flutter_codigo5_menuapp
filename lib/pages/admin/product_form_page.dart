@@ -14,7 +14,6 @@ import 'package:menuapp/ui/widgets/textfield_widget.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class ProductFormPage extends StatefulWidget {
-
   List<CategoryModel> categories;
   ProductModel? productModel;
 
@@ -28,7 +27,6 @@ class ProductFormPage extends StatefulWidget {
 }
 
 class _ProductFormPageState extends State<ProductFormPage> {
-
   final TextEditingController _ingredientController = TextEditingController();
 
   final TextEditingController _nameController = TextEditingController();
@@ -68,11 +66,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
     getData();
   }
 
-  getData(){
+  getData() {
     // _categories = await _categoryService.getCategories();
     categoryValue = widget.categories.first.id!;
 
-    if(widget.productModel != null){
+    if (widget.productModel != null) {
       _nameController.text = widget.productModel!.name;
       _descriptionController.text = widget.productModel!.description;
       _priceController.text = widget.productModel!.price.toStringAsFixed(2);
@@ -81,8 +79,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
       _servingController.text = widget.productModel!.serving.toString();
       _rateController.text = widget.productModel!.rate.toStringAsFixed(1);
       _ingredients = widget.productModel!.ingredients;
+      categoryValue = widget.productModel!.categoryId;
     }
-
 
     isLoading = false;
     setState(() {});
@@ -465,19 +463,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(14.0),
-                        // child: Image.network(
-                        //   "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                        //   fit: BoxFit.cover,
-                        // ),
-                        // child: Image.asset(
-                        //   fit: BoxFit.cover,
-                        //   'assets/images/placeholder.png',
-                        // ),
                         child: Image(
                           image: _image != null
                               ? FileImage(File(_image!.path))
-                              : AssetImage('assets/images/placeholder.png')
-                                  as ImageProvider,
+                              : widget.productModel != null
+                                  ? NetworkImage(widget.productModel!.image)
+                                  : const AssetImage(
+                                          'assets/images/placeholder.png')
+                                      as ImageProvider,
                           fit: BoxFit.cover,
                         ),
                       ),
