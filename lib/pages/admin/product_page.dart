@@ -91,9 +91,9 @@ class _ProductPageState extends State<ProductPage> {
                   ProductModel.fromJson(e.data() as Map<String, dynamic>);
               product.id = e.id;
 
-              product.categoryDescription = categories
+              product.categoryDescription = categories.isNotEmpty ? categories
                   .firstWhere((element) => element.id == product.categoryId)
-                  .category;
+                  .category : "";
 
               return product;
             }).toList();
