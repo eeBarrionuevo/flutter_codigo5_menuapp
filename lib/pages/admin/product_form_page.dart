@@ -47,7 +47,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final FirestoreService _productService =
       FirestoreService(collection: "products");
 
-  final firebase_storage.FirebaseStorage _storage = firebase_storage.FirebaseStorage.instance;
+  final firebase_storage.FirebaseStorage _storage =
+      firebase_storage.FirebaseStorage.instance;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -76,30 +77,54 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() {});
   }
 
-  Future<String> uploadImageStorage() async{
+  Future<String> uploadImageStorage() async {
     firebase_storage.Reference _reference = _storage.ref().child("products");
     String time = DateTime.now().toString();
-    firebase_storage.TaskSnapshot uploadTask = await _reference.child("$time.jpg").putFile(File(_image!.path));
+    firebase_storage.TaskSnapshot uploadTask =
+        await _reference.child("$time.jpg").putFile(File(_image!.path));
     String url = await uploadTask.ref.getDownloadURL();
     return url;
   }
 
   saveProduct() {
-
-    if(_formKey.currentState!.validate()){
-      ProductModel productModel = ProductModel(
-        image: "https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        categoryId: categoryValue,
-        rate: double.parse(_rateController.text),
-        price: double.parse(_priceController.text),
-        name: _nameController.text,
-        discount: int.parse(_discountController.text),
-        ingredients: _ingredients,
-        description: _descriptionController.text,
-        time: int.parse(_timeController.text),
-        serving: int.parse(_servingController.text),
-      );
-      _productService.addProduct(productModel);
+    if (true) {
+      if (_image != null) {
+        ProductModel productModel = ProductModel(
+          image:
+              "https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          categoryId: categoryValue,
+          rate: double.parse(_rateController.text),
+          price: double.parse(_priceController.text),
+          name: _nameController.text,
+          discount: int.parse(_discountController.text),
+          ingredients: _ingredients,
+          description: _descriptionController.text,
+          time: int.parse(_timeController.text),
+          serving: int.parse(_servingController.text),
+        );
+        _productService.addProduct(productModel);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.redAccent,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0)
+            ),
+            content: Row(
+              children: [
+                Icon(Icons.image_not_supported, color: Colors.white,),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(
+                  "Por favor selecciona una imagen.",
+                ),
+              ],
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -297,7 +322,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                                     icon: SvgPicture.asset(
                                       'assets/icons/trash.svg',
                                       height: 18.0,
-                                      color: kBrandPrimaryColor.withOpacity(0.8),
+                                      color:
+                                          kBrandPrimaryColor.withOpacity(0.8),
                                     ),
                                     onPressed: () {
                                       _ingredients.removeAt(index);

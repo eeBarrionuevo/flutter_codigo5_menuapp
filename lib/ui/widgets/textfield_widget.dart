@@ -9,14 +9,14 @@ class TextFieldWidget extends StatelessWidget {
   int? maxLines;
   bool? isNumeric;
   TextEditingController controller;
-  bool? validate;
+  bool? validate = true;
 
   TextFieldWidget({
     required this.hintText,
     this.maxLines,
     this.isNumeric = false,
     required this.controller,
-    this.validate = true,
+    this.validate,
   });
 
   @override
