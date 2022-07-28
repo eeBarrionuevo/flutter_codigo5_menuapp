@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
@@ -25,14 +26,23 @@ class CategoryPage extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot snap) {
           if (snap.hasData) {
             QuerySnapshot collection = snap.data;
-            List<Map<String, dynamic>> productsMap = collection.docs
-                .map((e) => e.data() as Map<String, dynamic>)
-                .toList();
+
+            // List<Map<String, dynamic>> productsMap = collection.docs
+            //     .map((e) => e.data() as Map<String, dynamic>)
+            //     .toList();
+
+
+            List<CategoryModel> categories = collection.docs.map((e){
+              CategoryModel categoryModel = CategoryModel.fromJson(e.data() as Map<String, dynamic>);
+              categoryModel.id = e.id;
+              return categoryModel;
+            }).toList();
+
             return ListView.builder(
-              itemCount: productsMap.length,
+              itemCount: categories.length,
               itemBuilder: (BuildContext context, int index) {
                 return ItemAdminCategoryWidget(
-                  category: productsMap[index],
+                  category: categories[index],
                 );
               },
             );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemAdminCategoryWidget extends StatelessWidget {
-  Map<String, dynamic> category;
+  CategoryModel category;
 
   ItemAdminCategoryWidget({
     required this.category,
@@ -12,19 +14,52 @@ class ItemAdminCategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(4, 4),
+          ),
+        ],
+      ),
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: kBrandPrimaryColor,
           child: Text(
-            category["category"][0],
+            category.category[0],
             style: TextStyle(
               color: Colors.white,
             ),
           ),
         ),
-        title: TextNormal(text: category["category"]),
+        title: TextNormal(text: category.category),
         subtitle: Text(
-          "Estado: ${category["status"] ? 'Activo' : 'Desactivo'}",
+          "Estado: ${category.status ? 'Activo' : 'Desactivo'}",
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                'assets/icons/trash.svg',
+                color: kBrandPrimaryColor.withOpacity(0.8),
+                height: 20.0,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                'assets/icons/edit.svg',
+                color: kBrandPrimaryColor.withOpacity(0.8),
+                height: 20.0,
+              ),
+            ),
+          ],
         ),
       ),
     );
