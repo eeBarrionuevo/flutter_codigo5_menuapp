@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
+import 'package:menuapp/ui/widgets/item_admin_category_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 
@@ -30,19 +31,8 @@ class CategoryPage extends StatelessWidget {
             return ListView.builder(
               itemCount: productsMap.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: kBrandPrimaryColor,
-                    child: Text(
-                      productsMap[index]["category"][0],
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  title: TextNormal(text: productsMap[index]["category"]),
-                  subtitle: Text(
-                      "Estado: ${productsMap[index]["status"] ? 'Activo' : 'Desactivo'}"),
+                return ItemAdminCategoryWidget(
+                  category: productsMap[index],
                 );
               },
             );
