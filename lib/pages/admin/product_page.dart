@@ -82,44 +82,54 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       ),
-      body: StreamBuilder(
-        stream: _productReference.snapshots(),
-        builder: (BuildContext context, AsyncSnapshot snap) {
-          if (snap.hasData) {
-            QuerySnapshot collection = snap.data;
-            List<ProductModel> products = collection.docs.map((e) {
-              ProductModel product =
-                  ProductModel.fromJson(e.data() as Map<String, dynamic>);
-              product.id = e.id;
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            StreamBuilder(
+              stream: _productReference.snapshots(),
+              builder: (BuildContext context, AsyncSnapshot snap) {
+                if (snap.hasData) {
+                  QuerySnapshot collection = snap.data;
+                  List<ProductModel> products = collection.docs.map((e) {
+                    ProductModel product =
+                    ProductModel.fromJson(e.data() as Map<String, dynamic>);
+                    product.id = e.id;
 
-              product.categoryDescription = categories.isNotEmpty ? categories
-                  .firstWhere((element) => element.id == product.categoryId)
-                  .category : "";
+                    product.categoryDescription = categories.isNotEmpty ? categories
+                        .firstWhere((element) => element.id == product.categoryId)
+                        .category : "";
 
-              return product;
-            }).toList();
+                    return product;
+                  }).toList();
 
-            return ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                return ItemAdminProductWidget(
-                  productModel: products[index],
-                  categories: categories,
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return ItemAdminProductWidget(
+                        productModel: products[index],
+                        categories: categories,
+                      );
+                    },
+                  );
+                }
+                return Center(
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: kBrandSecondaryColor,
+                    ),
+                  ),
                 );
               },
-            );
-          }
-          return Center(
-            child: SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: kBrandSecondaryColor,
-              ),
             ),
-          );
-        },
+            divider40,
+            divider40,
+          ],
+        ),
       ),
     );
   }
