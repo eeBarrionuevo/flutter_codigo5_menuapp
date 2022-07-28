@@ -1,11 +1,13 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 
 class CategoryPage extends StatelessWidget {
 
-  final CollectionReference _categoryReference = FirebaseFirestore.instance.collection('categories');
+
+  final FirestoreService _categoryService = FirestoreService(collection: 'categories');
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CategoryPage extends StatelessWidget {
         ),
       ),
       body: StreamBuilder(
-        stream: _categoryReference.snapshots(),
+        stream: _categoryService.getStreamCategory(),
         builder: (BuildContext context, AsyncSnapshot snap){
           if(snap.hasData){
             QuerySnapshot collection = snap.data;

@@ -11,6 +11,16 @@ class FirestoreService{
 
   late final CollectionReference _collectionReference = FirebaseFirestore.instance.collection(collection);
 
+
+  Stream getStreamCategory(){
+    return _collectionReference.orderBy('category').snapshots();
+  }
+
+  Stream getStreamProduct(){
+    return _collectionReference.orderBy('name').snapshots();
+  }
+
+
   Future<List<ProductModel>> getProducts() async{
     List<ProductModel> products = [];
     QuerySnapshot _querySnapshot =  await _collectionReference.get();

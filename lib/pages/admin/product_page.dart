@@ -91,7 +91,7 @@ class _ProductPageState extends State<ProductPage> {
         child: Column(
           children: [
             StreamBuilder(
-              stream: _productReference.snapshots(),
+              stream: _productService.getStreamProduct(),
               builder: (BuildContext context, AsyncSnapshot snap) {
                 if (snap.hasData) {
                   QuerySnapshot collection = snap.data;
