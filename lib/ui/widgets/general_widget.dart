@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/general/colors.dart';
 
 
 const divider3 = SizedBox(height: 3.0,);
@@ -30,6 +31,19 @@ Widget circleWidget(double radius) {
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: Colors.white.withOpacity(0.13),
+    ),
+  );
+}
+
+Widget loadingWidget(){
+  return Center(
+    child: SizedBox(
+      width: 20,
+      height: 20,
+      child: CircularProgressIndicator(
+        strokeWidth: 2,
+        color: kBrandSecondaryColor,
+      ),
     ),
   );
 }

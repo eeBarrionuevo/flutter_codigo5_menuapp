@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/services/firestore_service.dart';
+import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -24,9 +25,16 @@ class CategoryPage extends StatelessWidget {
           if(snap.hasData){
             QuerySnapshot collection = snap.data;
             List<Map<String, dynamic>> productsMap = collection.docs.map((e) => e.data() as Map<String, dynamic>).toList();
-            print(productsMap);
+            return ListView.builder(
+              itemCount: productsMap.length,
+              itemBuilder: (BuildContext context,  int index){
+                return ListTile(
+                  title: Text(productsMap[index]["category"]),
+                );
+              },
+            );
           }
-          return Text("Hola");
+          return loadingWidget();
         },
       ),
     );

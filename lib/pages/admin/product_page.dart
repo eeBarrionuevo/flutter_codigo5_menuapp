@@ -119,16 +119,7 @@ class _ProductPageState extends State<ProductPage> {
                     },
                   );
                 }
-                return Center(
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: kBrandSecondaryColor,
-                    ),
-                  ),
-                );
+                return loadingWidget();
               },
             ),
             divider40,
