@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menuapp/pages/admin/category_page.dart';
 import 'package:menuapp/pages/admin/product_page.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/background_widget.dart';
@@ -90,7 +91,7 @@ class HomeAdminPage extends StatelessWidget {
                         ItemMenuWidget(
                           text: "Categorías",
                           img: "category",
-                          toPage: ProductPage(),
+                          toPage: CategoryPage(),
                         ),
                         ItemMenuWidget(
                           text: "Reportes",
