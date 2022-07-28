@@ -19,12 +19,57 @@ class ItemAdminProductWidget extends StatelessWidget {
   showAlertDelete(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context){
+      builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14.0),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Eliminar producto")
+              Text(
+                "Eliminar producto",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              divider3,
+              TextNormal(
+                text:
+                    "¿Estás seguro de eliminar el producto?, ten en cuenta que será de forma permanente",
+              ),
+              divider6,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Cancelar",
+                      style: TextStyle(
+                        color: kBrandPrimaryColor.withOpacity(0.7),
+                      ),
+                    ),
+                  ),
+                  dividerWidth10,
+                  ElevatedButton(
+                    onPressed: () {
+                      
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      primary: kBrandPrimaryColor,
+                    ),
+                    child: Text(
+                      "Aceptar",
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         );
