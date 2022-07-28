@@ -6,6 +6,7 @@ import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/pages/admin/product_form_page.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
+import 'package:menuapp/ui/widgets/floating_button_widget.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_admin_product_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
@@ -50,8 +51,8 @@ class _ProductPageState extends State<ProductPage> {
           text: "Productos",
         ),
       ),
-      floatingActionButton: InkWell(
-        onTap: () {
+      floatingActionButton: FloatingButtonWidget(
+        onTap: (){
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -62,30 +63,6 @@ class _ProductPageState extends State<ProductPage> {
             ),
           );
         },
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
-          decoration: BoxDecoration(
-            color: kBrandPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-              dividerWidth6,
-              Text(
-                "Agregar",
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(

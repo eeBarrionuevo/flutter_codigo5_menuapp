@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
+import 'package:menuapp/ui/widgets/floating_button_widget.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_admin_category_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
@@ -21,7 +22,9 @@ class CategoryPage extends StatelessWidget {
           text: "Categorías",
         ),
       ),
-
+      floatingActionButton: FloatingButtonWidget(
+        onTap: (){},
+      ),
       body: StreamBuilder(
         stream: _categoryService.getStreamCategory(),
         builder: (BuildContext context, AsyncSnapshot snap) {
