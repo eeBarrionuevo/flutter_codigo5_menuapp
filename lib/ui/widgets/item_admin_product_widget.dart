@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/pages/admin/product_form_page.dart';
+import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
@@ -15,6 +16,8 @@ class ItemAdminProductWidget extends StatelessWidget {
     required this.productModel,
     required this.categories,
   });
+
+  final FirestoreService _productService = FirestoreService(collection: "products");
 
   showAlertDelete(BuildContext context) {
     showDialog(
@@ -56,7 +59,9 @@ class ItemAdminProductWidget extends StatelessWidget {
                   dividerWidth10,
                   ElevatedButton(
                     onPressed: () {
-                      
+                      _productService.deleteProduct(productModel.id!).then((value){
+                        Navigator.pop(context);
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
