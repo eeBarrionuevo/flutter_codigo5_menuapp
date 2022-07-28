@@ -21,6 +21,7 @@ class CategoryPage extends StatelessWidget {
           text: "Categorías",
         ),
       ),
+
       body: StreamBuilder(
         stream: _categoryService.getStreamCategory(),
         builder: (BuildContext context, AsyncSnapshot snap) {
@@ -37,12 +38,13 @@ class CategoryPage extends StatelessWidget {
               categoryModel.id = e.id;
               return categoryModel;
             }).toList();
-
             return ListView.builder(
               itemCount: categories.length,
               itemBuilder: (BuildContext context, int index) {
                 return ItemAdminCategoryWidget(
                   category: categories[index],
+                  onDelete: (){},
+                  onUpdate: (){},
                 );
               },
             );

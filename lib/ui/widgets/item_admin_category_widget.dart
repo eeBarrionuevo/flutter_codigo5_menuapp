@@ -6,9 +6,13 @@ import 'package:menuapp/ui/widgets/text_widget.dart';
 
 class ItemAdminCategoryWidget extends StatelessWidget {
   CategoryModel category;
+  Function onDelete;
+  Function onUpdate;
 
   ItemAdminCategoryWidget({
     required this.category,
+    required this.onDelete,
+    required this.onUpdate,
   });
 
   @override
@@ -44,7 +48,9 @@ class ItemAdminCategoryWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                onDelete();
+              },
               icon: SvgPicture.asset(
                 'assets/icons/trash.svg',
                 color: kBrandPrimaryColor.withOpacity(0.8),
@@ -52,7 +58,9 @@ class ItemAdminCategoryWidget extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                onUpdate();
+              },
               icon: SvgPicture.asset(
                 'assets/icons/edit.svg',
                 color: kBrandPrimaryColor.withOpacity(0.8),
