@@ -16,11 +16,27 @@ class ItemAdminProductWidget extends StatelessWidget {
     required this.categories,
   });
 
+  showAlertDelete(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context){
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Eliminar producto")
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
-      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14.0),
@@ -107,6 +123,9 @@ class ItemAdminProductWidget extends StatelessWidget {
                       ),
                     ),
                   );
+                } else if (value == 2) {
+                  //Mostrar alerta de eliminación
+                  showAlertDelete(context);
                 }
               },
               itemBuilder: (context) {

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,6 +49,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   String categoryValue = "";
   XFile? _image;
   bool isLoading = true;
+
+  CollectionReference _collectionReference = FirebaseFirestore.instance.collection('tasks');
 
   final FirestoreService _categoryService =
       FirestoreService(collection: "categories");
@@ -174,52 +177,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
         });
       }
 
-
-      // if (_image != null) {
-      //   isLoading = true;
-      //   setState(() {});
-      //   String imageUrl = await uploadImageStorage();
-      //   ProductModel productModel = ProductModel(
-      //     image: imageUrl,
-      //     categoryId: categoryValue,
-      //     rate: double.parse(_rateController.text),
-      //     price: double.parse(_priceController.text),
-      //     name: _nameController.text,
-      //     discount: int.parse(_discountController.text),
-      //     ingredients: _ingredients,
-      //     description: _descriptionController.text,
-      //     time: int.parse(_timeController.text),
-      //     serving: int.parse(_servingController.text),
-      //   );
-      //   _productService.addProduct(productModel).then((value) {
-      //     isLoading = false;
-      //     setState(() {});
-      //     Navigator.pop(context);
-      //   });
-      // } else {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //       backgroundColor: Colors.redAccent,
-      //       behavior: SnackBarBehavior.floating,
-      //       shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(12.0)),
-      //       content: Row(
-      //         children: [
-      //           Icon(
-      //             Icons.image_not_supported,
-      //             color: Colors.white,
-      //           ),
-      //           SizedBox(
-      //             width: 10.0,
-      //           ),
-      //           Text(
-      //             "Por favor selecciona una imagen.",
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   );
-      // }
     }
   }
 
@@ -232,7 +189,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
         child: MyAppBarWidget(
-          text: "Agregar producto",
+          text: "${widget.productModel == null ? 'Agregar' : 'Actualizar'} producto",
         ),
       ),
       body: Stack(

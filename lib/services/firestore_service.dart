@@ -47,6 +47,12 @@ class FirestoreService{
     return 1;
   }
 
+  // Eliminar Producto
+  Future<int> deleteProduct(String id) async{
+    await _collectionReference.doc(id).delete();
+    return 1;
+  }
+
 
 
 }
