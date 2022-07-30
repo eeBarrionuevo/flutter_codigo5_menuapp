@@ -1,13 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:menuapp/helpers/sp_global.dart';
 import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
-import 'package:menuapp/ui/general/fonts.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/item_category_widget.dart';
 import 'package:menuapp/ui/widgets/item_product_widget.dart';
@@ -36,6 +34,8 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
   int indexCategory = 0;
 
   bool isLoading = true;
+
+  final SPGlobal _prefs = SPGlobal();
 
   @override
   void initState() {
@@ -96,7 +96,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
               children: [
                 divider12,
                 TextNormal(
-                  text: "Bienvenidos",
+                  text: "Bienvenido, ${_prefs.fullName.substring(0, _prefs.fullName.indexOf(' '))}",
                 ),
                 H1(
                   text: "Las espadas de Ramón",
