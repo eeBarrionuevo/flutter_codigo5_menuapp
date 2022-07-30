@@ -1,10 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/widgets/general_widget.dart';
+import 'package:menuapp/ui/widgets/text_widget.dart';
+import 'package:menuapp/ui/widgets/textfield_widget.dart';
 
 class RegisterPage extends StatelessWidget {
 
+  final TextEditingController _emailController = TextEditingController();
+
   registerCustomer() async {
-    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    UserCredential userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: "mandarina@gmail.com",
       password: "3volution",
     );
@@ -12,12 +18,13 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       constraints: const BoxConstraints.expand(),
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage("https://images.pexels.com/photos/1108117/pexels-photo-1108117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+          image: NetworkImage(
+              "https://images.pexels.com/photos/1108117/pexels-photo-1108117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
           fit: BoxFit.cover,
         ),
       ),
@@ -26,7 +33,36 @@ class RegisterPage extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              TextField(),
+              Expanded(
+                child: SizedBox(),
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40.0),
+                      topRight: Radius.circular(40.0),
+                    ),
+                  ),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Column(
+                        children: [
+                          H1(text: "Regístrate"),
+                          divider3,
+                          TextNormal(text: "Por favor ingresa los datos requeridos"),
+                          divider30,
+                          TextFieldWidget(hintText: "Correo electrónico", controller: _emailController)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
