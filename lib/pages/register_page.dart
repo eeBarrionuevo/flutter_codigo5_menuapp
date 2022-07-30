@@ -27,8 +27,7 @@ class RegisterPage extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(
-              "https://images.pexels.com/photos/1108117/pexels-photo-1108117.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+          image: AssetImage("assets/images/background.jpg",),
           fit: BoxFit.cover,
         ),
       ),
@@ -66,6 +65,7 @@ class RegisterPage extends StatelessWidget {
                         TextFieldPasswordWidget(controller: _passwordController),
                         ButtonNormalWidget(
                           text: "Registrar",
+                          icon: 'happy',
                           onPressed: () {
 
                           },

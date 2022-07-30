@@ -5,10 +5,12 @@ import 'package:menuapp/ui/general/colors.dart';
 class ButtonNormalWidget extends StatelessWidget {
 
   String text;
+  String icon;
   Function onPressed;
 
   ButtonNormalWidget({
     required this.text,
+    required this.icon,
     required this.onPressed,
   });
 
@@ -27,7 +29,7 @@ class ButtonNormalWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0)),
         ),
         icon: SvgPicture.asset(
-          'assets/icons/save.svg',
+          'assets/icons/$icon.svg',
           color: Colors.white,
         ),
         label: Text(

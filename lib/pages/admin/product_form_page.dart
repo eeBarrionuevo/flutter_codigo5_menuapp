@@ -501,6 +501,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     divider30,
                     ButtonNormalWidget(
                       text: "Guardar",
+                      icon: 'save',
                       onPressed: () {
                         saveProduct();
                       },
