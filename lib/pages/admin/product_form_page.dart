@@ -8,6 +8,7 @@ import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/general/colors.dart';
+import 'package:menuapp/ui/widgets/button_normal_widget.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/my_appbar_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
@@ -50,7 +51,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   XFile? _image;
   bool isLoading = true;
 
-  CollectionReference _collectionReference = FirebaseFirestore.instance.collection('tasks');
+  CollectionReference _collectionReference =
+      FirebaseFirestore.instance.collection('tasks');
 
   final FirestoreService _categoryService =
       FirestoreService(collection: "categories");
@@ -112,7 +114,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   saveProduct() async {
     if (_formKey.currentState!.validate()) {
-
       ProductModel productModel = ProductModel(
         image: "",
         categoryId: categoryValue,
@@ -126,13 +127,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
         serving: int.parse(_servingController.text),
       );
 
-      if(_image != null){
+      if (_image != null) {
         String imageUrl = await uploadImageStorage();
         productModel.image = imageUrl;
-      }else{
-        if(widget.productModel != null){
+      } else {
+        if (widget.productModel != null) {
           productModel.image = widget.productModel!.image;
-        }else{
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               backgroundColor: Colors.redAccent,
@@ -159,15 +160,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
         }
       }
 
-      if(widget.productModel == null){
+      if (widget.productModel == null) {
         //Agregar nuevo
         _productService.addProduct(productModel).then((value) {
           isLoading = false;
           setState(() {});
           Navigator.pop(context);
         });
-
-      }else{
+      } else {
         //Actualizar
         productModel.id = widget.productModel!.id;
         _productService.updateProduct(productModel).then((value) {
@@ -176,7 +176,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
           Navigator.pop(context);
         });
       }
-
     }
   }
 
@@ -189,7 +188,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
         child: MyAppBarWidget(
-          text: "${widget.productModel == null ? 'Agregar' : 'Actualizar'} producto",
+          text:
+              "${widget.productModel == null ? 'Agregar' : 'Actualizar'} producto",
         ),
       ),
       body: Stack(
@@ -499,29 +499,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       ),
                     ),
                     divider30,
-                    SizedBox(
-                      height: 48.0,
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          saveProduct();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: kBrandPrimaryColor,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0)),
-                        ),
-                        icon: SvgPicture.asset(
-                          'assets/icons/save.svg',
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          "Guardar",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
+                    ButtonNormalWidget(
+                      text: "Guardar",
+                      onPressed: () {
+                        saveProduct();
+                      },
                     ),
                     divider40,
                     divider40,

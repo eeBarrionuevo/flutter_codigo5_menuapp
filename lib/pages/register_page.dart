@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/ui/widgets/button_normal_widget.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_password_widget.dart';
@@ -37,10 +38,13 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
+                flex: 3,
                 child: SizedBox(),
               ),
               Expanded(
+                flex: 5,
                 child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22.0),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -51,19 +55,22 @@ class RegisterPage extends StatelessWidget {
                   ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Column(
-                        children: [
-                          H1(text: "Regístrate"),
-                          divider3,
-                          TextNormal(text: "Por favor ingresa los datos requeridos"),
-                          divider30,
-                          TextFieldWidget(hintText: "Nombres", controller: _fullNameController),
-                          TextFieldWidget(hintText: "Correo electrónico", controller: _emailController),
-                          TextFieldPasswordWidget(controller: _passwordController),
-                        ],
-                      ),
+                    child: Column(
+                      children: [
+                        H1(text: "Regístrate"),
+                        divider3,
+                        TextNormal(text: "Por favor ingresa los datos requeridos"),
+                        divider30,
+                        TextFieldWidget(hintText: "Nombres", controller: _fullNameController),
+                        TextFieldWidget(hintText: "Correo electrónico", controller: _emailController),
+                        TextFieldPasswordWidget(controller: _passwordController),
+                        ButtonNormalWidget(
+                          text: "Registrar",
+                          onPressed: () {
+
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),
