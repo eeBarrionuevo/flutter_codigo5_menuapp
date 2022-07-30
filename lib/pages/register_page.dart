@@ -6,21 +6,54 @@ import 'package:menuapp/ui/widgets/text_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_password_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_widget.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
 
+class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _fullNameController = TextEditingController();
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
 
   void registerCustomer() async {
-    if(_formKey.currentState!.validate()){
-      UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-      print(userCredential.user!.email);
+    if (_formKey.currentState!.validate()) {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        print(userCredential.user!.email);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == "email-already-in-use") {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              backgroundColor: Colors.redAccent,
+              content: Text("El correo electrónico ya está registrado"),
+            ),
+          );
+        } else if (e.code == "weak-password") {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              backgroundColor: Colors.redAccent,
+              content: Text("La contraseña es débil, intenta con otra"),
+            ),
+          );
+        }
+      }
     }
   }
 
@@ -31,7 +64,9 @@ class RegisterPage extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background.jpg",),
+          image: AssetImage(
+            "assets/images/background.jpg",
+          ),
           fit: BoxFit.cover,
         ),
       ),
@@ -47,7 +82,8 @@ class RegisterPage extends StatelessWidget {
               Expanded(
                 flex: 7,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 22.0),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -64,11 +100,17 @@ class RegisterPage extends StatelessWidget {
                         children: [
                           H1(text: "Regístrate"),
                           divider3,
-                          TextNormal(text: "Por favor ingresa los datos requeridos"),
+                          TextNormal(
+                              text: "Por favor ingresa los datos requeridos"),
                           divider30,
-                          TextFieldWidget(hintText: "Nombres", controller: _fullNameController),
-                          TextFieldWidget(hintText: "Correo electrónico", controller: _emailController),
-                          TextFieldPasswordWidget(controller: _passwordController),
+                          TextFieldWidget(
+                              hintText: "Nombres",
+                              controller: _fullNameController),
+                          TextFieldWidget(
+                              hintText: "Correo electrónico",
+                              controller: _emailController),
+                          TextFieldPasswordWidget(
+                              controller: _passwordController),
                           ButtonNormalWidget(
                             text: "Registrar",
                             icon: 'happy',
