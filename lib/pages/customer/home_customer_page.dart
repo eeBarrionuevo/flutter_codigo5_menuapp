@@ -42,6 +42,7 @@ class _HomeCustomerPageState extends State<HomeCustomerPage> {
     // TODO: implement initState
     super.initState();
     getDataFirebase();
+    // _prefs.isLogin = false;
   }
 
   getDataFirebase() async {

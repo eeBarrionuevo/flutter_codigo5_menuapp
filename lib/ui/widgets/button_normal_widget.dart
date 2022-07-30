@@ -7,11 +7,13 @@ class ButtonNormalWidget extends StatelessWidget {
   String text;
   String icon;
   Function onPressed;
+  Color? color;
 
   ButtonNormalWidget({
     required this.text,
     required this.icon,
     required this.onPressed,
+    this.color,
   });
 
   @override
@@ -24,7 +26,7 @@ class ButtonNormalWidget extends StatelessWidget {
           onPressed();
         },
         style: ElevatedButton.styleFrom(
-          primary: kBrandPrimaryColor,
+          primary: color ?? kBrandPrimaryColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0)),
         ),
