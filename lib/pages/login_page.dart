@@ -80,7 +80,7 @@ class LoginPage extends StatelessWidget {
                           ButtonNormalWidget(
                             text: "Iniciar sesión con Google",
                             icon: 'google',
-                            color: Color(0xffDF4930),
+                            color: Color(0xfff84b2a),
                             onPressed: () {
 
                             },
