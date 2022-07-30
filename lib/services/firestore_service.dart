@@ -1,4 +1,7 @@
 
+import 'dart:async';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
@@ -61,6 +64,22 @@ class FirestoreService{
   Future<int> deleteProduct(String id) async{
     await _collectionReference.doc(id).delete();
     return 1;
+  }
+
+
+  Future<String> addUser(Map<String, dynamic> userData) async{
+    try{
+
+      DocumentReference documentReference = await _collectionReference.add(userData);
+      return documentReference.id;
+
+    } on TimeoutException catch(e){
+      return Future.error("error 1");
+    } on SocketException catch(e){
+      return Future.error("error 2");
+    } on Error catch(e){
+      return Future.error("error 3");
+    }
   }
 
 

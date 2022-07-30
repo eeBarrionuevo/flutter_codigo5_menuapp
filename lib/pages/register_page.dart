@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/pages/customer/home_customer_page.dart';
+import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/widgets/button_normal_widget.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
@@ -20,6 +22,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController _passwordController = TextEditingController();
 
+  final FirestoreService _userCollection = FirestoreService(collection: "users");
+
   void registerCustomer() async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -28,7 +32,27 @@ class _RegisterPageState extends State<RegisterPage> {
           email: _emailController.text,
           password: _passwordController.text,
         );
-        print(userCredential.user!.email);
+
+        if (userCredential.user != null) {
+
+          Map<String, dynamic> userData = {
+            "full_name": _fullNameController.text,
+            "email": _emailController.text,
+            "role": "customer",
+          };
+
+          _userCollection.addUser(userData).then((value){
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeCustomerPage(),
+                ),
+                    (route) => false);
+          });
+
+
+
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == "email-already-in-use") {
           ScaffoldMessenger.of(context).showSnackBar(
