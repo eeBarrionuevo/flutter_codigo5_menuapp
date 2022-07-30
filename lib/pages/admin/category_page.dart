@@ -41,6 +41,7 @@ class CategoryPage extends StatelessWidget {
               categoryModel.id = e.id;
               return categoryModel;
             }).toList();
+
             return ListView.builder(
               itemCount: categories.length,
               itemBuilder: (BuildContext context, int index) {

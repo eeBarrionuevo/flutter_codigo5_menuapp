@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:menuapp/pages/admin/home_admin_page.dart';
 import 'package:menuapp/pages/customer/home_customer_page.dart';
 import 'package:menuapp/pages/customer/product_detail_page.dart';
+import 'package:menuapp/pages/login_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +23,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(),
       ),
-      //home: HomeCustomerPage(),
+      home: LoginPage(),
       // home: ProductDetailPage(),
-      home: HomeAdminPage(),
+      // home: HomeAdminPage(),
     );
   }
 }
