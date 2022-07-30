@@ -8,16 +8,20 @@ import 'package:menuapp/ui/widgets/textfield_widget.dart';
 
 class RegisterPage extends StatelessWidget {
 
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  registerCustomer() async {
-    UserCredential userCredential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: "mandarina@gmail.com",
-      password: "3volution",
-    );
+  void registerCustomer() async {
+    if(_formKey.currentState!.validate()){
+      UserCredential userCredential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      print(userCredential.user!.email);
+    }
   }
 
   @override
@@ -37,11 +41,11 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: SizedBox(),
               ),
               Expanded(
-                flex: 5,
+                flex: 7,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22.0),
                   width: double.infinity,
@@ -54,23 +58,26 @@ class RegisterPage extends StatelessWidget {
                   ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        H1(text: "Regístrate"),
-                        divider3,
-                        TextNormal(text: "Por favor ingresa los datos requeridos"),
-                        divider30,
-                        TextFieldWidget(hintText: "Nombres", controller: _fullNameController),
-                        TextFieldWidget(hintText: "Correo electrónico", controller: _emailController),
-                        TextFieldPasswordWidget(controller: _passwordController),
-                        ButtonNormalWidget(
-                          text: "Registrar",
-                          icon: 'happy',
-                          onPressed: () {
-
-                          },
-                        ),
-                      ],
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          H1(text: "Regístrate"),
+                          divider3,
+                          TextNormal(text: "Por favor ingresa los datos requeridos"),
+                          divider30,
+                          TextFieldWidget(hintText: "Nombres", controller: _fullNameController),
+                          TextFieldWidget(hintText: "Correo electrónico", controller: _emailController),
+                          TextFieldPasswordWidget(controller: _passwordController),
+                          ButtonNormalWidget(
+                            text: "Registrar",
+                            icon: 'happy',
+                            onPressed: () {
+                              registerCustomer();
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
