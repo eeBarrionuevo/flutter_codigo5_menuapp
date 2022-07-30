@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/helpers/sp_global.dart';
 import 'package:menuapp/models/user_mode.dart';
 import 'package:menuapp/pages/customer/home_customer_page.dart';
 import 'package:menuapp/services/firestore_service.dart';
@@ -26,6 +27,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final FirestoreService _userCollection =
       FirestoreService(collection: "users");
 
+  final SPGlobal _prefs = SPGlobal();
+
   void registerCustomer() async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -36,6 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
 
         if (userCredential.user != null) {
+
           UserModel userModel = UserModel(
             fullName: _fullNameController.text,
             email: _emailController.text,
@@ -44,12 +48,19 @@ class _RegisterPageState extends State<RegisterPage> {
           );
 
           _userCollection.addUser(userModel).then((value) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeCustomerPage(),
-                ),
-                (route) => false);
+
+            if(value.isNotEmpty){
+              _prefs.fullName = userModel.fullName;
+              _prefs.email = userModel.email;
+              _prefs.isLogin = true;
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeCustomerPage(),
+                  ),
+                      (route) => false);
+            }
+
           });
         }
       } on FirebaseAuthException catch (e) {

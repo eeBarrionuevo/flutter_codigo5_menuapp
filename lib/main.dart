@@ -17,7 +17,6 @@ void main() async{
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,9 +25,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.manropeTextTheme(),
       ),
-      home: LoginPage(),
+      home: PreInit(),
       // home: ProductDetailPage(),
       // home: HomeAdminPage(),
     );
   }
 }
+
+class PreInit extends StatelessWidget {
+
+  final SPGlobal _prefs = SPGlobal();
+
+  @override
+  Widget build(BuildContext context) {
+    return _prefs.isLogin ? HomeCustomerPage() : LoginPage();
+  }
+}
+
