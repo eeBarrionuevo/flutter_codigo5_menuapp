@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:menuapp/models/category_model.dart';
 import 'package:menuapp/models/product_model.dart';
+import 'package:menuapp/models/user_mode.dart';
 
 class FirestoreService{
 
@@ -67,10 +68,10 @@ class FirestoreService{
   }
 
 
-  Future<String> addUser(Map<String, dynamic> userData) async{
+  Future<String> addUser(UserModel userModel) async{
     try{
 
-      DocumentReference documentReference = await _collectionReference.add(userData);
+      DocumentReference documentReference = await _collectionReference.add(userModel.toJson());
       return documentReference.id;
 
     } on TimeoutException catch(e){

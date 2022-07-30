@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:menuapp/models/user_mode.dart';
 import 'package:menuapp/pages/customer/home_customer_page.dart';
 import 'package:menuapp/services/firestore_service.dart';
 import 'package:menuapp/ui/widgets/button_normal_widget.dart';
@@ -22,7 +23,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController _passwordController = TextEditingController();
 
-  final FirestoreService _userCollection = FirestoreService(collection: "users");
+  final FirestoreService _userCollection =
+      FirestoreService(collection: "users");
 
   void registerCustomer() async {
     if (_formKey.currentState!.validate()) {
@@ -34,24 +36,21 @@ class _RegisterPageState extends State<RegisterPage> {
         );
 
         if (userCredential.user != null) {
+          UserModel userModel = UserModel(
+            fullName: _fullNameController.text,
+            email: _emailController.text,
+            role: "customer",
+            status: true,
+          );
 
-          Map<String, dynamic> userData = {
-            "full_name": _fullNameController.text,
-            "email": _emailController.text,
-            "role": "customer",
-          };
-
-          _userCollection.addUser(userData).then((value){
+          _userCollection.addUser(userModel).then((value) {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
                   builder: (context) => HomeCustomerPage(),
                 ),
-                    (route) => false);
+                (route) => false);
           });
-
-
-
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == "email-already-in-use") {
