@@ -2,11 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/ui/widgets/general_widget.dart';
 import 'package:menuapp/ui/widgets/text_widget.dart';
+import 'package:menuapp/ui/widgets/textfield_password_widget.dart';
 import 'package:menuapp/ui/widgets/textfield_widget.dart';
 
 class RegisterPage extends StatelessWidget {
 
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   registerCustomer() async {
     UserCredential userCredential =
@@ -56,7 +59,9 @@ class RegisterPage extends StatelessWidget {
                           divider3,
                           TextNormal(text: "Por favor ingresa los datos requeridos"),
                           divider30,
-                          TextFieldWidget(hintText: "Correo electrónico", controller: _emailController)
+                          TextFieldWidget(hintText: "Nombres", controller: _fullNameController),
+                          TextFieldWidget(hintText: "Correo electrónico", controller: _emailController),
+                          TextFieldPasswordWidget(controller: _passwordController),
                         ],
                       ),
                     ),
